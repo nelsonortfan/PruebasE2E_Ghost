@@ -1,16 +1,19 @@
-describe('Testing Ghost Initial', () => {
+describe('Crear una Page en Ghost', () => {
 	
 	var page_name = `Pagina de Prueba E2E realizada en 09/11/2023`
 	var description = `Descripcion para la pagina de prueba a crear`
 	
-    beforeEach(()=>{	   
-       cy.visit('http://localhost:2368/ghost/#/signin')
-        cy.wait(1000)
-		cy.get('input[name="identification"]').type('your_email')
-		cy.get('input[name="password"]').type('your_password')
-        cy.contains('Sign in').click()
-        cy.wait(1000)        
-    })
+    beforeEach(()=>{
+		cy.fixture("ghost_credentials.json").then((credentials) => {
+		cy.session(credentials.email, () => {
+		cy.visit('http://localhost:2368/ghost/#/signin')
+		cy.get('input[name="identification"]').type(credentials.email);
+		cy.get('input[name="password"]').type(credentials.password);
+		cy.contains("Sign in").click();
+		cy.wait(1000);
+		});		
+		})
+	})
 	
 	it('Creación de la nueva Page', () => {
 		cy.wait(1000) 
