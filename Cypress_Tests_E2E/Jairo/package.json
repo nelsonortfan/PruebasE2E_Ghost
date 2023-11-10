@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@faker-js/faker": "^8.2.0",
     "cypress-iframe": "^1.0.1"
   },
   "devDependencies": {
