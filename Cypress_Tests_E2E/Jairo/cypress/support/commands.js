@@ -43,7 +43,7 @@ Cypress.Commands.add("login", () => {
   });
 });
 
-Cypress.Commands.add("createPost", () => {
+Cypress.Commands.add("createPost", (publish = true) => {
   cy.goToPage("dashboard");
   const postName = faker.word.words({ min: 1, max: 5 });
   const postContent = faker.lorem.paragraphs(3);
@@ -54,16 +54,18 @@ Cypress.Commands.add("createPost", () => {
   cy.get(".koenig-lexical").eq(1).click().type(postContent);
 
   // Publish it
-
-  cy.contains("Publish").click();
-  cy.contains("Continue, final review").click();
-  cy.contains("Publish post, right now").click();
+  if (publish) {
+    cy.contains("Publish").click();
+    cy.contains("Continue, final review").click();
+    cy.contains("Publish post, right now").click();
+  }
   cy.url().then((url) => {
     return cy.wrap({
       url: url,
       id: url.split("/").pop(),
       title: postName,
       content: postContent,
+      publish: publish,
     });
   });
 });
