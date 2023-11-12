@@ -5,8 +5,7 @@
 ### Prerequisites
 * Node v16.20.2
 * npm v8.19.4
-* Android Studio
-  On the properties of android studio you must have installed:
+* Android Studio: On the properties of android studio you must have installed:
   - Android SDK Platform-Tools
   - Android SDK Build-Tools
   - Android SDK Tools (Obsolete) (If you're using a Giraffe version or superior)
