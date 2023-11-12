@@ -4,8 +4,8 @@ Feature: Tags
   Scenario: Crear un tag nuevo y guardarlo exitosamente, finalmente verificar que se encuentre listado
     Given I navigate to page "http://localhost:2368/ghost"
     And I wait for 3 seconds
-    When I enter email "angel@gmail.com"
-    And I enter password "12345678910"
+    When I enter email "<USERNAME1>"
+    And I enter password "<PASSWORD1>"
     And I click on sing in button
     And I wait for 2 seconds
     And I click on tags button
@@ -26,8 +26,8 @@ Feature: Tags
   Scenario: Editar un tag ya existente, cambiar el nombre y verificar que se encuentre listado con el nuevo nombre
     Given I navigate to page "http://localhost:2368/ghost"
     And I wait for 3 seconds
-    When I enter email "angel@gmail.com"
-    And I enter password "12345678910"
+    When I enter email "<USERNAME1>"
+    And I enter password "<PASSWORD1>"
     And I click on sing in button
     And I wait for 2 seconds
     And I click on tags button
@@ -57,8 +57,8 @@ Feature: Tags
   Scenario: Crear un tag, verificar que este listado, luego eliminar ese tag  y  verificar que no siga listado
     Given I navigate to page "http://localhost:2368/ghost"
     And I wait for 3 seconds
-    When I enter email "angel@gmail.com"
-    And I enter password "12345678910"
+    When I enter email "<USERNAME1>"
+    And I enter password "<PASSWORD1>"
     And I click on sing in button
     And I wait for 2 seconds
     And I click on tags button
@@ -86,8 +86,8 @@ Feature: Tags
   Scenario: Crear 3 tags, 1 internos y 2 públicos, luego filtrar los tags existentes por tipo y verificar que haya el número correcto por tipo listado
     Given I navigate to page "http://localhost:2368/ghost"
     And I wait for 3 seconds
-    When I enter email "angel@gmail.com"
-    And I enter password "12345678910"
+    When I enter email "<USERNAME1>"
+    And I enter password "<PASSWORD1>"
     And I click on sing in button
     And I wait for 2 seconds
     And I click on tags button
@@ -131,8 +131,8 @@ Feature: Tags
   Scenario: Crear un tag con elementos inválidos y verificar errores, finalmente verificar que no se encuentre listado
     Given I navigate to page "http://localhost:2368/ghost"
     And I wait for 3 seconds
-    When I enter email "angel@gmail.com"
-    And I enter password "12345678910"
+    When I enter email "<USERNAME1>"
+    And I enter password "<PASSWORD1>"
     And I click on sing in button
     And I wait for 2 seconds
     And I click on tags button
