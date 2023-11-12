@@ -174,6 +174,22 @@ When('I validate there is not page', async function () {
   expect(messageConfirmation).to.equal('Tell the world about yourself.');
 });
  
+When('I update the title on the page', async function () {
+    let element = await this.driver.$('textarea[placeholder="Page title"]');	
+    return await element.setValue('Titulo pagina actualizada');
+  }); 
+
+When('I save the new changes on the page', async function () {
+    let element = await this.driver.$('button[data-test-button="publish-save"]');	
+    return await element.click();
+  });
+
+When('I validate the page is updated', async function () {
+  let elements = await this.driver.$$('h3.gh-content-entry-title');  
+  let messageConfirmation = await elements[0].getText();
+  //console.log('El valor es ' + messageConfirmation)
+  expect(messageConfirmation).to.equal('Titulo pagina actualizada');
+});  
   
 
 //--------- OTHER STEPS --------//
