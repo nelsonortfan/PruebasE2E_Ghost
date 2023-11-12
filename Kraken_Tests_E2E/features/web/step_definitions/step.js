@@ -166,6 +166,13 @@ When('I confirm delete page', async function () {
     let element = await this.driver.$('button.gh-btn.gh-btn-red');
     return await element.click();
 });
+
+When('I validate there is not page', async function () {
+  let elements = await this.driver.$$('h4');  
+  let messageConfirmation = await elements[0].getText();
+  // console.log('El valor es ' + messageConfirmation)
+  expect(messageConfirmation).to.equal('Tell the world about yourself.');
+});
  
   
 

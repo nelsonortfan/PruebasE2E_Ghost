@@ -47,6 +47,7 @@ Feature: Pages
 	And I wait for 1 seconds
 	And I confirm delete page
 	And I wait for 2 seconds
+	And I validate there is not page
 	
 		
   
