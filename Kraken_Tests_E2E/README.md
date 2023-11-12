@@ -3,13 +3,15 @@
 ## On Mac OS
 
 ### Prerequisites
-* Node v16.20.2
-* npm v8.19.4
-* Android Studio: On the properties of android studio you must have installed:
+
+- Node v16.20.2
+- npm v8.19.4
+- Ghost 5.68.0
+- Android Studio: On the properties of android studio you must have installed:
   - Android SDK Platform-Tools
   - Android SDK Build-Tools
   - Android SDK Tools (Obsolete) (If you're using a Giraffe version or superior)
-* Java 21
+- Java 21
 
 ### Steps
 
@@ -26,16 +28,21 @@ cd Kraken_Tests_E2E
 ```
 npm install kraken-node -g
 ```
+
 - Install kraken-node locally
 
 ```
 npm install kraken-node
 ```
+
 - Install appium locally
+
 ```
 npm install appium
 ```
+
 - Install chai
+
 ```
 npm install chai
 ```
@@ -55,6 +62,7 @@ export NVM_DIR="$HOME/.nvm"
 - Set in the `properties.json` file in the root of the Kraken_Tests_E2E folder the url of the ghost site, the email and the password of the admin user that will be used to run the tests
 
 - Run kraken tests
+
 ```
 npx kraken-node run
 ```

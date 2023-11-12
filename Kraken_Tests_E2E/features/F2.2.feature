@@ -1,7 +1,7 @@
 Feature: Pages
 
   @user1 @web
-  Scenario: Crear una page nueva y eliminarla exitosamente, finalmente verificar que se encuentre listado
+  Scenario: Crear una page nueva y actualizar titulo exitosamente, finalmente verificar que se encuentre actualizada
     Given I navigate to page "<GHOST_URL>"
     And I wait for 3 seconds
     When I enter email "<USERNAME1>"
@@ -41,13 +41,16 @@ Feature: Pages
 	And I wait for 1 seconds
 	And I click over the first page
 	And I wait for 2 seconds
-	And I click button settings to delete
+	And I update the title on the page
 	And I wait for 1 seconds
-	And I click button to delete page
+	And I save the new changes on the page
 	And I wait for 1 seconds
-	And I confirm delete page
-	And I wait for 2 seconds
-	And I validate there is not page
+	And I click on pages button
+	And I wait for 1 seconds
+	And I validate the page is updated
+	And I wait for 1 seconds
+	
+
 	
 		
   
