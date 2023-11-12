@@ -7,7 +7,4 @@ module.exports = defineConfig({
     },
   },
   video: true,
-  env: {
-    ghost_url: "http://localhost:2369/ghost",
-  },
 });
