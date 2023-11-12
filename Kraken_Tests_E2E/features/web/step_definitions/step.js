@@ -229,7 +229,6 @@ When(
     expect(await elemnt.getValue()).to.equal(mailgunApiKey);
   }
 );
-
 When(
   "I see the mailgun domain {kraken-string}",
   async function (mailgunDomain) {
@@ -238,6 +237,30 @@ When(
     expect(await elemnt.getValue()).to.equal(mailgunDomain);
   }
 );
+When('I click general button', async function(){
+  const element = await this.driver.$('a[href="#/settings/general/"]');
+  return await element.click();
+
+});
+When('I click title expand button', async function(){
+  const element = await this.driver.$('button[data-test-toggle-pub-info=""]');
+  return await element.click();
+
+});
+When("I enter new title name {kraken-string}", async function (newTitle) {
+  let element = await this.driver.$('input[data-test-title-input=""]');
+  return await element.setValue(newTitle);
+});
+When('I click general save button', async function(){
+  const element = await this.driver.$('button[data-test-button="save"]');
+  return await element.click();
+
+});
+Then("I see the site title {kraken-string}", async function (newTitle) {
+  const siteTitle = await this.driver.$$('.gh-nav-menu-details-sitetitle');
+  const text = await siteTitle[0].getText();
+  expect(text).to.equal(newTitle);
+});
 
 //--------- PAGES STEPS --------//
 
@@ -425,7 +448,7 @@ Then(
   }
 );
 
-//--------- TAGS STEPS --------//
+//--------- MEMBERS STEPS --------//
 When("I click on members button", async function () {
   let element = await this.driver.$('a[href="#/members/"]');
   return await element.click();
