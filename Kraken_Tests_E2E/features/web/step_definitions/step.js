@@ -97,6 +97,48 @@ When('I click on confirm delete database button', async function () {
     return await element.click();
 });
 
+When('I click on Staff button', async function () {
+    let element = await this.driver.$('a[href="#/settings/staff/"]');
+    return await element.click();
+  });
+  
+When('I select Owner', async function () {
+    let element = await this.driver.$('a[data-test-user-id="1"]');
+    return await element.click();
+  });
+  
+When('I click to update user location', async function () {
+    let element = await this.driver.$('input[id="user-location"]');	
+    return await element.setValue('Bogota-Colombia');
+  });
+  
+When('I click to update user WebSite', async function () {
+    let element = await this.driver.$('input[id="user-website"]');	
+    return await element.setValue('http://mywebsite.com');
+  });
+  
+When('I click to update user Facebook', async function () {
+    let element = await this.driver.$('input[id="user-facebook"]');	
+    return await element.setValue('https://www.facebook.com/lucasBunny');
+  });
+  
+When('I save the changes in Staff', async function () {
+    let element = await this.driver.$('button[data-test-save-button=""]');
+    return await element.click();
+  });  
+  
+When('I validate Staff updated', async function () {
+  let element = await this.driver.$('input[id="user-location"]').getValue();
+  let element2 = await this.driver.$('input[id="user-website"]').getValue();
+  let element3 = await this.driver.$('input[id="user-facebook"]').getValue();
+  //console.log('El valor titulo 1 es ' + element)
+  expect(element).to.equal('Bogota-Colombia');
+  expect(element2).to.equal('http://mywebsite.com');
+  expect(element3).to.equal('https://www.facebook.com/lucasBunny');
+  return;
+}); 
+
+
 //--------- PAGES STEPS --------//
 
 When('I click on pages button', async function () {
