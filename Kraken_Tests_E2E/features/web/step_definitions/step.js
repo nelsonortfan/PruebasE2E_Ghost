@@ -229,7 +229,6 @@ When(
     expect(await elemnt.getValue()).to.equal(mailgunApiKey);
   }
 );
-
 When(
   "I see the mailgun domain {kraken-string}",
   async function (mailgunDomain) {
@@ -238,6 +237,30 @@ When(
     expect(await elemnt.getValue()).to.equal(mailgunDomain);
   }
 );
+When('I click general button', async function(){
+  const element = await this.driver.$('a[href="#/settings/general/"]');
+  return await element.click();
+
+});
+When('I click title expand button', async function(){
+  const element = await this.driver.$('button[data-test-toggle-pub-info=""]');
+  return await element.click();
+
+});
+When("I enter new title name {kraken-string}", async function (newTitle) {
+  let element = await this.driver.$('input[data-test-title-input=""]');
+  return await element.setValue(newTitle);
+});
+When('I click general save button', async function(){
+  const element = await this.driver.$('button[data-test-button="save"]');
+  return await element.click();
+
+});
+Then("I see the site title {kraken-string}", async function (newTitle) {
+  const siteTitle = await this.driver.$$('.gh-nav-menu-details-sitetitle');
+  const text = await siteTitle[0].getText();
+  expect(text).to.equal(newTitle);
+});
 
 //--------- PAGES STEPS --------//
 
@@ -424,3 +447,57 @@ Then(
     expect(text).to.contain(status);
   }
 );
+
+//--------- MEMBERS STEPS --------//
+When("I click on members button", async function () {
+  let element = await this.driver.$('a[href="#/members/"]');
+  return await element.click();
+});
+When("I click on new member button", async function(){
+  let element = await this.driver.$('a[data-test-new-member-button="true"]');
+  return await element.click();
+});
+When("I enter member name {kraken-string}", async function(memberName) {
+  const element = await this.driver.$('input[data-test-input="member-name"]');
+  await element.setValue(memberName);
+});
+When("I enter member email {kraken-string}", async function(memberEmail) {
+  const element = await this.driver.$('input[data-test-input="member-email"]');
+  await element.setValue(memberEmail);
+});
+When("I click save member button", async function(){
+  let element = await this.driver.$('button[data-test-button="save"]');
+  return await element.click();
+})
+Then("I see the member name {kraken-string}", async function (memberName) {
+  const name = await this.driver.$$('.gh-members-list-name');
+  const text = await name[0].getText();
+  expect(text).to.equal(memberName);
+});
+Then("I see the member email {kraken-string}", async function (memberEmail) {
+  const email = await this.driver.$$('.gh-members-list-email');
+  const text = await email[0].getText();
+  expect(text).to.equal(memberEmail);
+});
+When("I search the member name {kraken-string}", async function (memberName) {
+  let element = await this.driver.$('.gh-members-list-searchfield');
+  return await element.setValue(memberName);
+});
+When("I click on filter button", async function () {
+  let element = await this.driver.$('div[data-test-button="members-filter-actions"]');
+  return await element.click();
+});
+When("I select email option", async function () {
+  let element = await this.driver.$('select[data-test-select="members-filter"]');
+  await element.click();
+  let element2 = await this.driver.$('option[value="email"]');
+  return await element2.click();
+});
+When("I enter member email {kraken-string} in filter", async function (memberEmail) {
+  let element = await this.driver.$('input[data-test-input="members-filter-value"]');
+  return await element.setValue(memberEmail);
+});
+When("I click Apply filters", async function () {
+  let element = await this.driver.$('button[data-test-button="members-apply-filter"]');
+  return await element.click();
+});

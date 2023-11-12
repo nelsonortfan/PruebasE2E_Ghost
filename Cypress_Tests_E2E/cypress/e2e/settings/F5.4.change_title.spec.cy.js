@@ -1,5 +1,5 @@
 const { faker } = require("@faker-js/faker");
-describe('Crear un nuevo miembro', () => {
+describe('Cambiar el titulo del sitio y verificar que se haya guardado bien', () => {
     beforeEach(()=>{
         cy.login()
         cy.goToPage("settings/general")
