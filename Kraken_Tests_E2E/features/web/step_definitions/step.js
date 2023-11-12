@@ -102,6 +102,29 @@ When("I fill description with more than 500 elements", async function () {
   return await element.setValue(textToType);
 });
 
+Then("I should see the tag {string} listed", async function (tagName) {
+  const element = await this.driver.$('h3.gh-tag-list-name[data-test-tag-name]');
+  const text = await element.getText();
+  expect(text).to.equal(tagName);
+});
+
+Then("I should see the message {string}", async function (message) {
+    const element = await this.driver.$('h4');
+    const text = await element.getText();
+    expect(text).to.equal(message);
+});
+
+Then("I should see {string} tags listed", async function (numberOfTags) {
+    const element = await this.driver.$$(".gh-tag-list-name");
+    expect(element.length).to.equal(parseInt(numberOfTags));
+});
+
+Then("I should see the error message {string}", async function (errorMessage) {
+    const element = await this.driver.$("div.form-group.no-margin.error > p.response");
+    const text = await element.getText();
+    expect(text).to.equal(errorMessage);
+});
+
 //--------- SETTINGS STEPS --------//
 
 When("I click on settings button", async function () {

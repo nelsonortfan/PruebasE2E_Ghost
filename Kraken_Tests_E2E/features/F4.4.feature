@@ -9,46 +9,25 @@ Feature: Tags
     And I click on sing in button
     And I wait for 2 seconds
     And I click on settings button
-    And I wait for 1 seconds
     And I click on labs button
-    And I wait for 1 seconds
     And I click on delete database button
-    And I wait for 1 seconds
     And I click on confirm delete database button
-    And I wait for 2 seconds
     And I click on tags button
-    And I wait for 1 seconds
     And I click on new tag button
-    And I wait for 1 seconds
     And I fill the tag name "publicTag1"
-    And I wait for 1 seconds
     And I fill the tag description "public tag 1 description"
-    And I wait for 1 seconds
     And I click save tag button
-    And I wait for 2 seconds
     And I click on tags button
-    And I wait for 1 seconds
     And I click on new tag button
-    And I wait for 1 seconds
     And I fill the tag name "#internalTag1"
-    And I wait for 1 seconds
     And I fill the tag description "internal tag 1 description"
-    And I wait for 1 seconds
     And I click save tag button
-    And I wait for 2 seconds
     And I click on tags button
-    And I wait for 1 seconds
     And I click on new tag button
-    And I wait for 1 seconds
     And I fill the tag name "#internalTag2"
-    And I wait for 1 seconds
     And I fill the tag description "internal tag 2 description"
-    And I wait for 1 seconds
     And I click save tag button
-    And I wait for 2 seconds
     And I click on tags button
-    And I wait for 1 seconds
     And I click on public tags button
-    And I wait for 1 seconds
     And I click on internal tags button
-    Then I wait for 5 seconds
+    Then I should see "2" tags listed

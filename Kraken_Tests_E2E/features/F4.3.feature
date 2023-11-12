@@ -9,30 +9,17 @@ Feature: Tags
     And I click on sing in button
     And I wait for 2 seconds
     And I click on settings button
-    And I wait for 1 seconds
     And I click on labs button
-    And I wait for 1 seconds
     And I click on delete database button
-    And I wait for 1 seconds
     And I click on confirm delete database button
-    And I wait for 2 seconds
     And I click on tags button
-    And I wait for 1 seconds
     And I click on new tag button
-    And I wait for 1 seconds
     And I fill the tag name "tag1"
-    And I wait for 1 seconds
     And I fill the tag description "tag1 description"
-    And I wait for 1 seconds
     And I click save tag button
-    And I wait for 2 seconds
     And I click on tags button
-    And I wait for 1 seconds
     And I click on tag with name "tag1"
-    And I wait for 1 seconds
     And I click on delete tag button
-    And I wait for 2 seconds
     And I click on confirm delete tag button
-    And I wait for 2 seconds
     And I click on tags button
-    Then I wait for 5 seconds
+    Then I should see the message "Start organizing your content."
