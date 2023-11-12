@@ -1,7 +1,6 @@
 describe('Crear un tag y luego eliminar todo el contenido de la DB desde settings - labs - delete all content y finalmente verificar que no hayan tags listados', () => {
     beforeEach(() => {
         cy.login()
-        cy.visit('http://localhost:2368/ghost/#')
         cy.resetDataForTest()
     })
 

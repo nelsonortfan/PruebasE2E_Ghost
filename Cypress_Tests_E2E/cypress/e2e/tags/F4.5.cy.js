@@ -1,7 +1,6 @@
 describe('Crear un tag con elementos inválidos y verificar errores, finalmente verificar que no se encuentre listado.', () => {
     beforeEach(() => {
         cy.login()
-        cy.visit('http://localhost:2368/ghost/#')
         cy.resetDataForTest()
     })
 

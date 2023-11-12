@@ -1,7 +1,6 @@
 describe('Crear 3 tags, 1 internos y 2 públicos, luego filtrar los tags existentes por tipo y verificar que haya el número correcto por tipo listado', () => {
     beforeEach(() => {
         cy.login()
-        cy.visit('http://localhost:2368/ghost/#')
         cy.resetDataForTest()
     })
 

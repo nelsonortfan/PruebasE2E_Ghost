@@ -1,7 +1,6 @@
 describe('Crear un tag nuevo y guardarlo exitosamente, finalmente verificar que se encuentre listado', () => {
     beforeEach(() => {
         cy.login()
-        cy.visit('http://localhost:2368/ghost/#')
         cy.resetDataForTest()
     })
 

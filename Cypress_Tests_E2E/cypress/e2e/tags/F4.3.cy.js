@@ -1,7 +1,6 @@
 describe('Crear un tag, verificar que este listado, luego eliminar ese tag  y  verificar que no siga listado', () => {
     beforeEach(() => {
         cy.login()
-        cy.visit('http://localhost:2368/ghost/#')
         cy.resetDataForTest()
     })
 

@@ -1,7 +1,6 @@
 describe('Editar un tag ya existente, cambiar el nombre y verificar que se encuentre listado con el nuevo nombre', () => {
     beforeEach(() => {
         cy.login()
-        cy.visit('http://localhost:2368/ghost/#')
         cy.resetDataForTest()
     })
 
