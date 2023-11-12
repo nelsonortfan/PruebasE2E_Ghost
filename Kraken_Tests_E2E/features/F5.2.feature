@@ -2,13 +2,19 @@ Feature: Settings
 
   @user1 @web
   Scenario: Crear un tag y luego eliminar todo el contenido de la DB desde settings - labs - delete all content y finalmente verificar que no hayan tags listados
-    Given I navigate to page "http://localhost:2368/ghost"
+    Given I navigate to page "<GHOST_URL>"
     And I wait for 3 seconds
     When I enter email "<USERNAME1>"
     And I enter password "<PASSWORD1>"
     And I click on sing in button
     And I wait for 2 seconds
-    And I reset preexisting data
+    And I click on settings button
+    And I wait for 1 seconds
+    And I click on labs button
+    And I wait for 1 seconds
+    And I click on delete database button
+    And I wait for 1 seconds
+    And I click on confirm delete database button
     And I wait for 2 seconds
     And I click on tags button
     And I wait for 1 seconds

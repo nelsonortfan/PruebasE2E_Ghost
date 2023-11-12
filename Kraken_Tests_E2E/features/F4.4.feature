@@ -2,13 +2,19 @@ Feature: Tags
 
   @user4 @web
   Scenario: Crear 3 tags, 1 internos y 2 públicos, luego filtrar los tags existentes por tipo y verificar que haya el número correcto por tipo listado
-    Given I navigate to page "http://localhost:2368/ghost"
+    Given I navigate to page "<GHOST_URL>"
     And I wait for 3 seconds
     When I enter email "<USERNAME1>"
     And I enter password "<PASSWORD1>"
     And I click on sing in button
     And I wait for 2 seconds
-    And I reset preexisting data
+    And I click on settings button
+    And I wait for 1 seconds
+    And I click on labs button
+    And I wait for 1 seconds
+    And I click on delete database button
+    And I wait for 1 seconds
+    And I click on confirm delete database button
     And I wait for 2 seconds
     And I click on tags button
     And I wait for 1 seconds
