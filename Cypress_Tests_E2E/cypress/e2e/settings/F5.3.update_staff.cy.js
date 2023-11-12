@@ -1,27 +1,18 @@
-describe('Actualizar valores de Staff en Settings', () => {
+describe("Test set mailgun credentias", () => {
 	
-	var userLocation = 'Bogota-Colombia'
-	var userWebSite = 'http://mywebsite.com'
-	var userFacebook = 'https://www.facebook.com/lucasBunny'
-	var validation = ''
-
+  var userLocation = 'Bogota-Colombia'
+  var userWebSite = 'http://mywebsite.com'
+  var userFacebook = 'https://www.facebook.com/lucasBunny'
+  var validation = '' 	
 	
-    beforeEach(()=>{
-		cy.fixture("ghost_credentials.json").then((credentials) => {
-		cy.session(credentials.email, () => {
-		cy.visit('http://localhost:2368/ghost/#/signin')
-		cy.get('input[name="identification"]').type(credentials.email);
-		cy.get('input[name="password"]').type(credentials.password);
-		cy.contains("Sign in").click();
-		cy.wait(1000);
-		});		
-		})
-	})
-	
-	
-	it('Acceder a Settings para actualizar Staff', () => {
-		cy.wait(1000) 
-        cy.visit('http://localhost:2368/ghost/#/settings')
+  beforeEach(() => {
+    cy.login();
+  });
+  
+  it("Should set mailgun credentials", () => {
+    
+		cy.wait(1000)
+		cy.goToPage("settings/");	
 		cy.wait(1000)
 		cy.contains('Staff').click()
 		cy.wait(1000)
@@ -36,11 +27,8 @@ describe('Actualizar valores de Staff en Settings', () => {
 		cy.get('button[data-test-save-button=""]').click()
 		cy.wait(1000)
 		cy.contains('Saved')
-    })
-
-	it('Validar información en Settings Staff actualizada', () => {
-		cy.wait(1000) 
-        cy.visit('http://localhost:2368/ghost/#/settings')
+		cy.wait(1000)
+		cy.goToPage("settings/");		
 		cy.wait(1000)
 		cy.contains('Staff').click()
 		cy.wait(1000)
@@ -59,7 +47,6 @@ describe('Actualizar valores de Staff en Settings', () => {
 		expect(validation).to.equal(userFacebook)	
 		})
 		cy.wait(1000)
-    }) 
 	
-    
-  })
+  });
+});

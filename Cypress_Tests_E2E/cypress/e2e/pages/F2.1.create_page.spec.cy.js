@@ -1,23 +1,17 @@
-describe('Crear una Page en Ghost', () => {
+describe('Crear una nueva Page y guardarlo exitosamente, finalmente verificar que se encuentre listada', () => {
 	
 	var page_name = `Pagina de Prueba E2E realizada en 09/11/2023`
 	var description = `Descripcion para la pagina de prueba a crear`
 	
-    beforeEach(()=>{
-		cy.fixture("ghost_credentials.json").then((credentials) => {
-		cy.session(credentials.email, () => {
-		cy.visit('http://localhost:2368/ghost/#/signin')
-		cy.get('input[name="identification"]').type(credentials.email);
-		cy.get('input[name="password"]').type(credentials.password);
-		cy.contains("Sign in").click();
-		cy.wait(1000);
-		});		
-		})
-	})
-	
-	it('Creación de la nueva Page', () => {
+    beforeEach(() => {
+        cy.login()
+        cy.resetDataForTest()
+    })
+
+    it('Should create a new page', () => {
+		
 		cy.wait(1000) 
-        cy.visit('http://localhost:2368/ghost/#/pages')
+        cy.goToPage("pages/");
 		cy.wait(1000)
 		cy.contains('New page').click()
 		cy.get('textarea[placeholder="Page title"]').type(page_name)
@@ -28,17 +22,13 @@ describe('Crear una Page en Ghost', () => {
 		cy.wait(1000)
 		cy.contains(page_name)
 		cy.contains(description)
-    })   
-	
-	it('Validacion de la nueva Page en la lista de pages', () => {
 		cy.wait(1000) 
-        cy.visit('http://localhost:2368/ghost/#/pages')
+        cy.goToPage("pages/");
 		cy.wait(1000)		
 		cy.contains(page_name)		
 		const item = cy.get('.feature-memberAttribution').get('div[role="menuitem"]').eq(0)
         item.contains(
             page_name
-          )
+          )		
     })
-    
-  })
+})

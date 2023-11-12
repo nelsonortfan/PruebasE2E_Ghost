@@ -1,25 +1,18 @@
-describe('Actualizar una Page en Ghost', () => {
+describe('Editar una page ya existente, cambiar el titulo y verificar que se encuentre listada con el nuevo valor', () => {
 	
 	var page_title_new = 'Un nuevo titulo al editar'
 	var description = `Descripción Actualizada para la pagina de prueba a crear`
 	var page_title_initial = 'El titulo inicial es este'
 	
-    beforeEach(()=>{
-		cy.fixture("ghost_credentials.json").then((credentials) => {
-		cy.session(credentials.email, () => {
-		cy.visit('http://localhost:2368/ghost/#/signin')
-		cy.get('input[name="identification"]').type(credentials.email);
-		cy.get('input[name="password"]').type(credentials.password);
-		cy.contains("Sign in").click();
-		cy.wait(1000);
-		});		
-		})
-	})
-	
-	
-	it('Creación de la nueva Page validando que no exista', () => {
+    beforeEach(() => {
+        cy.login()
+        cy.resetDataForTest()
+    })
+
+    it('Should update a new page', () => {
+        
 		cy.wait(1000) 
-        cy.visit('http://localhost:2368/ghost/#/pages')
+        cy.goToPage("pages/");
 		cy.wait(1000)
 		cy.contains(page_title_initial).should('not.exist')
 		cy.contains('New page').click()
@@ -31,11 +24,8 @@ describe('Actualizar una Page en Ghost', () => {
 		cy.wait(1000)
 		cy.contains(page_title_initial)
 		cy.contains(description)
-    })
-	
-	it('Actualización de la nueva Page', () => {
 		cy.wait(1000) 
-        cy.visit('http://localhost:2368/ghost/#/pages')
+        cy.goToPage("pages/");
 		cy.wait(1000)
 		cy.get('.feature-memberAttribution').get('div[role="menuitem"]').eq(0).click()
 		cy.wait(1000)
@@ -46,16 +36,13 @@ describe('Actualizar una Page en Ghost', () => {
 		cy.contains('Update').click()
 		cy.wait(2000)
 		cy.contains('Updated')
-    })   
-		
-	it('Validacion de la nueva Page en la lista de pages', () => {
 		cy.wait(1000) 
-        cy.visit('http://localhost:2368/ghost/#/pages')
+        cy.goToPage("pages/");
 		cy.wait(1000)
 		cy.contains(page_title_initial).should('not.exist')
 		cy.wait(1000)
-		cy.contains(page_title_new)	
+		cy.contains(page_title_new)		
+		
+		
     })
-
-    
-  })
+})

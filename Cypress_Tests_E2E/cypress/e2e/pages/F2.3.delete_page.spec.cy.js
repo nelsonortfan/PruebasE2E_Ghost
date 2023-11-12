@@ -2,28 +2,21 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
   });
 
-describe('Eliminar una Page en Ghost', () => {
+describe('Eliminar una Page creada', () => {
 	
 	var page_title_new = null
 	var description = `Descripción Actualizada para la pagina de prueba a crear`
 	var page_title_initial = 'Titulo inicial para eliminar'
 	
-    beforeEach(()=>{
-		cy.fixture("ghost_credentials.json").then((credentials) => {
-		cy.session(credentials.email, () => {
-		cy.visit('http://localhost:2368/ghost/#/signin')
-		cy.get('input[name="identification"]').type(credentials.email);
-		cy.get('input[name="password"]').type(credentials.password);
-		cy.contains("Sign in").click();
-		cy.wait(1000);
-		});		
-		})
-	})
-	
-	
-	it('Creación de la nueva Page validando que no exista', () => {
+    beforeEach(() => {
+        cy.login()
+        cy.resetDataForTest()
+    })
+
+    it('Should create a new page and delete it successfully', () => {
+       
 		cy.wait(1000) 
-        cy.visit('http://localhost:2368/ghost/#/pages')
+        cy.goToPage("pages/");
 		cy.wait(1000)
 		cy.contains(page_title_initial).should('not.exist')
 		cy.contains('New page').click()
@@ -35,12 +28,8 @@ describe('Eliminar una Page en Ghost', () => {
 		cy.wait(1000)
 		cy.contains(page_title_initial)
 		cy.contains(description)
-    })
-	
-	
-	it('Eliminación de la Page creada', () => {
 		cy.wait(1000) 
-        cy.visit('http://localhost:2368/ghost/#/pages')
+        cy.goToPage("pages/");
 		cy.wait(1000)
 		cy.get('.feature-memberAttribution').get('div[role="menuitem"]').eq(0).click()
 		cy.wait(1000)
@@ -51,15 +40,11 @@ describe('Eliminar una Page en Ghost', () => {
 		cy.get('.modal-footer').get('.gh-btn.gh-btn-red.gh-btn-icon.ember-view').contains('Delete').click({force: true})
 		cy.wait(2000)
 		cy.contains('All pages')
-    })   
-		
-	it('Validacion de eliminacion de la Page creada', () => {
 		cy.wait(1000) 
-        cy.visit('http://localhost:2368/ghost/#/pages')
+        cy.goToPage("pages/");
 		cy.wait(1000)
 		cy.contains(page_title_initial).should('not.exist')		
-		cy.wait(1000)	
+		cy.wait(1000)
+		
     })
-	
-    
-  })
+})
