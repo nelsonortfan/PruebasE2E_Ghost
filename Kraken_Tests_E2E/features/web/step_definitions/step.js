@@ -145,7 +145,28 @@ Then('I see a confirmation message', async function () {
   let messageConfirmation = await elements[0].getText();
   //console.log('El valor es ' + messageConfirmation)
   expect(messageConfirmation).to.equal('Boom. It’s out there.');
-});  
+}); 
+
+Then('I click over the first page', async function () {
+    let elements = await this.driver.$('div[role="menuitem"]');	
+    return await elements.click();
+  }); 
+  
+When('I click button settings to delete', async function () {
+	let element = await this.driver.$('button.gh-btn.gh-btn-editor[title="Settings"]');   
+    return await element.click();
+});
+
+When('I click button to delete page', async function (){
+    let element = await this.driver.$('button.gh-btn.gh-btn-outline');
+    return await element.click();
+});
+
+When('I confirm delete page', async function () {
+    let element = await this.driver.$('button.gh-btn.gh-btn-red');
+    return await element.click();
+});
+ 
   
 
 //--------- OTHER STEPS --------//
