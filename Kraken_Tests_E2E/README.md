@@ -74,7 +74,8 @@ the file should look like this:
 
 ```
 npx kraken-node run
-```
+
+
 ## On Windows OS
 
 ### Prerequisites
@@ -125,6 +126,7 @@ npm install appium
 ```
 npm install chai
 ```
+
 
 - Set up the environment variables
 
