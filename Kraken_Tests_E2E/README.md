@@ -59,7 +59,16 @@ export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 ```
 
-- Set in the `properties.json` file in the root of the Kraken_Tests_E2E folder the url of the ghost site, the email and the password of the admin user that will be used to run the tests
+- Rename the `properties.json.example` file in the root of the Kraken_Tests_E2E folder to `properties.json` and set the url of the ghost site, the email and the password of the admin user that will be used to run the tests.
+
+the file should look like this:
+
+```
+{
+  "USERNAME1": "test@test.com",
+  "PASSWORD1": "12345678910",
+  "GHOST_URL": "http://localhost:2368/ghost"
+}
 
 - Run kraken tests
 
