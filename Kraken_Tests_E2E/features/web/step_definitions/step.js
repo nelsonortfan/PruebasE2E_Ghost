@@ -91,3 +91,9 @@ When('I click on confirm delete database button', async function () {
     let element = await this.driver.$('button[data-test-button="confirm"].gh-btn.gh-btn-red.gh-btn-icon.ember-view');
     return await element.click();
 });
+
+When('I reset preexisting data', async function () {
+    this.driver.url('http://localhost:2368/ghost/#/settings/labs/');
+    this.driver.$('button.gh-btn.gh-btn-red[data-test-button="delete-all"]').click();
+    this.driver.$('button[data-test-button="confirm"].gh-btn.gh-btn-red.gh-btn-icon.ember-view').click();
+});

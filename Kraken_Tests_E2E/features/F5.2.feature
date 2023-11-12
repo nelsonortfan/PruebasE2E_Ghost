@@ -8,6 +8,8 @@ Feature: Settings
     And I enter password "<PASSWORD1>"
     And I click on sing in button
     And I wait for 2 seconds
+    And I reset preexisting data
+    And I wait for 2 seconds
     And I click on tags button
     And I wait for 1 seconds
     And I click on new tag button
