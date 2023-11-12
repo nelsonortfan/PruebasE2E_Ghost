@@ -16,6 +16,8 @@ When('I click on sing in button', async function () {
     return await element.click();
 });
 
+//--------- TAGS STEPS --------//
+
 When('I click on tags button', async function () {
     let element = await this.driver.$('a[href="#/tags/"]');
     return await element.click();
@@ -72,6 +74,8 @@ When('I fill description with more than 500 elements', async function () {
     return await element.setValue(textToType);
 });
 
+//--------- SETTINGS STEPS --------//
+
 When('I click on settings button', async function () {
     let element = await this.driver.$('a[href="#/settings/"]');
     return await element.click();
@@ -92,8 +96,4 @@ When('I click on confirm delete database button', async function () {
     return await element.click();
 });
 
-When('I reset preexisting data', async function () {
-    this.driver.url('http://localhost:2368/ghost/#/settings/labs/');
-    this.driver.$('button.gh-btn.gh-btn-red[data-test-button="delete-all"]').click();
-    this.driver.$('button[data-test-button="confirm"].gh-btn.gh-btn-red.gh-btn-icon.ember-view').click();
-});
+//--------- OTHER STEPS --------//
