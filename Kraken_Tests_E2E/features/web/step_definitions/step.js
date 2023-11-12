@@ -1,4 +1,5 @@
 const { Given, When, Then } = require('@cucumber/cucumber');
+const expect = require('chai').expect;
 
 When('I enter email {kraken-string}', async function (email) {
     let element = await this.driver.$('input[name="identification"]');
@@ -95,5 +96,56 @@ When('I click on confirm delete database button', async function () {
     let element = await this.driver.$('button[data-test-button="confirm"].gh-btn.gh-btn-red.gh-btn-icon.ember-view');
     return await element.click();
 });
+
+//--------- PAGES STEPS --------//
+
+When('I click on pages button', async function () {
+    let element = await this.driver.$('a[href="#/pages/"]');
+    return await element.click();
+});
+
+When('I click on new page button', async function () {
+    let element = await this.driver.$('a[href="#/editor/page/"]');
+    return await element.click();
+});
+
+Then('I click on the title', async function () {
+    let element = await this.driver.$('textarea[placeholder="Page title"]');
+    return await element.click();
+  });
+
+Then('I click on the description', async function () {
+    let element = await this.driver.$('.koenig-lexical');
+    return await element.click();
+  });
+  
+ Then('I see email sent', async function () {
+  let elements = await this.driver.$$("span[name='Kraken Test']");
+  let emailWasReceived = elements.length > 0;
+  expect(emailWasReceived).to.equal(true);
+}); 
+  
+Then('I publish the page', async function () {
+    let element = await this.driver.$('button[data-test-button="publish-flow"]');
+    return await element.click();
+  });
+  
+Then('I continue the page', async function () {
+    let element = await this.driver.$('button[data-test-button="continue"]');
+    return await element.click();
+  });
+  
+Then('I finish the published page', async function () {
+    let element = await this.driver.$('button[data-test-button="confirm-publish"]');
+    return await element.click();
+  });
+  
+Then('I see a confirmation message', async function () {
+  let elements = await this.driver.$$('span.green');  
+  let messageConfirmation = await elements[0].getText();
+  //console.log('El valor es ' + messageConfirmation)
+  expect(messageConfirmation).to.equal('Boom. It’s out there.');
+});  
+  
 
 //--------- OTHER STEPS --------//

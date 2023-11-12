@@ -35,6 +35,10 @@ npm install kraken-node
 ```
 npm install appium
 ```
+- Install chai
+```
+npm install chai
+```
 
 - Set up the environment variables
 
