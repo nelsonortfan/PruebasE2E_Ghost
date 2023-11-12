@@ -41,7 +41,7 @@ Cypress.Commands.add("login", () => {
 });
 
 Cypress.Commands.add("resetDataForTest", () => {
-  cy.goToPage("settings/lab");
+  cy.goToPage("settings/labs");
   cy.wait(1000);
   //press the red button called Delete to delete the database
   cy.get("button.gh-btn-red").click();
@@ -95,6 +95,31 @@ Cypress.Commands.add("deleteAllPosts", () => {
     } else {
       // do something else
       cy.log("No posts to delete");
+    }
+  });
+});
+
+Cypress.Commands.add("deleteAllMembers", () => {
+  cy.goToPage("members");
+  cy.wait(1000);
+  const memberSelector = '.gh-list-data';
+  cy.get("body").then(($body) => {
+    // synchronously query for element
+    for (let i = 0; i < $body.find(memberSelector).length/5; i++){
+      cy.log($body.find(memberSelector).length/5);
+      cy.get('.gh-members-list-name').then(($header)=>{
+        $header[0].click();
+      });
+      cy.wait(1000);
+      cy.get('button[data-test-button="member-actions"]').click();
+      cy.wait(300);
+      cy.get('button[data-test-button="delete-member"]').click();
+      cy.wait(300);
+      cy.get('button[data-test-button="confirm"]').click();
+      cy.wait(300);
+    }
+    if ($body.find(memberSelector).length/5 == 0) {
+      cy.log("No members to delete");
     }
   });
 });
