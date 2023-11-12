@@ -189,6 +189,16 @@ When('I validate the page is updated', async function () {
   let messageConfirmation = await elements[0].getText();
   //console.log('El valor es ' + messageConfirmation)
   expect(messageConfirmation).to.equal('Titulo pagina actualizada');
+});
+
+When('I validate both pages with same title', async function () {
+  let elements = await this.driver.$$('h3.gh-content-entry-title');  
+  let title1 = await elements[0].getText();
+  let title2 = await elements[1].getText();
+  //console.log('El valor titulo 1 es ' + title1)
+  //console.log('El valor titulo 2 es ' + title2)
+  expect(title1).to.equal('Pagina con titulo repetido');
+  expect(title2).to.equal('Pagina con titulo repetido');
 });  
   
 
