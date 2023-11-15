@@ -7,4 +7,6 @@ module.exports = defineConfig({
     },
   },
   video: true,
+  viewportWidth: 1920,
+  viewportHeight: 1080,
 });

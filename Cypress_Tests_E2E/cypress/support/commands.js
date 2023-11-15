@@ -123,3 +123,7 @@ Cypress.Commands.add("deleteAllMembers", () => {
     }
   });
 });
+
+Cypress.Commands.add("takeScreenshot", (filePath) => {
+  cy.screenshot(filePath, {overwrite:true});
+});
