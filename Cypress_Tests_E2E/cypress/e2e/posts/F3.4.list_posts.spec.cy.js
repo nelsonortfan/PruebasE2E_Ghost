@@ -1,8 +1,9 @@
+const { ScreenshotHelper } = require("../../support/utils");
 const posts = [null, null, null, null];
 describe("Test post list", () => {
   beforeEach(() => {
     cy.login();
-    cy.deleteAllPosts();
+    cy.resetDataForTest();
     cy.createPost().then((postData) => {
       posts[3] = postData;
     });
@@ -19,6 +20,8 @@ describe("Test post list", () => {
 
   it("Test post list", () => {
     cy.goToPage("posts");
+    const screenshotTaker = new ScreenshotHelper("posts/F3.4");
+    screenshotTaker.screenshot("Listar posts");
     // There should be 4 posts
     cy.get(".gh-posts-list-item-group").should("have.length", 4);
 
