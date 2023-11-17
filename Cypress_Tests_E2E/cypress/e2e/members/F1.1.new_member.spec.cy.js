@@ -22,7 +22,7 @@ describe('Crear un nuevo miembro', () => {
         screenshotTaker.screenshot("Email ingresado")    
         cy.get('span[data-test-task-button-state="idle"]').click()
         cy.wait(1000)
-        screenshotTaker.screenshot("Miembro guardado")
+        screenshotTaker.screenshot("Miembro guardado - Comprobación")
         cy.goToPage("members")
         cy.wait(1000)
         cy.get('h3.gh-members-list-name').then(($header)=>{

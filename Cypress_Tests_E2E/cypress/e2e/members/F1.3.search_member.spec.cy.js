@@ -1,4 +1,6 @@
 const { faker } = require("@faker-js/faker");
+const { ScreenshotHelper } = require("../../support/utils");
+var path = require('path');
 describe('Buscar tres miembros previamente creados a través de la barra de búsqueda y verificar que sí salgan bien sus resultados', () => {
     beforeEach(()=>{
         cy.login()
@@ -7,45 +9,57 @@ describe('Buscar tres miembros previamente creados a través de la barra de bús
         cy.wait(1000)
     })
     it('Create 3 new member and search them', ()=>{
+        const screenshotTaker = new ScreenshotHelper("F1.3")
+        screenshotTaker.screenshot("Inicio test, creando miembro 1")
         cy.get('a[data-test-new-member-button="true"]').click()
         cy.wait(1000)
         const newMemberName = faker.person.fullName()
         const newEmail = faker.internet.email()
+        screenshotTaker.screenshot("Creación miembro 1")
         cy.get('form').within(() => {
             cy.get('input[data-test-input="member-name"]').type(newMemberName)
             cy.get('input[data-test-input="member-email"]').type(newEmail)    
         })
+        screenshotTaker.screenshot("Formulario llenado miembro 1")
         cy.get('span[data-test-task-button-state="idle"]').click()
         cy.wait(1000)
         cy.goToPage("members")
         cy.wait(1000)
+        screenshotTaker.screenshot("Miembro 1 creado")
         cy.get('a[data-test-new-member-button="true"]').click()
         cy.wait(1000)
         const newMemberName2 = faker.person.fullName()
         const newEmail2 = faker.internet.email()
+        screenshotTaker.screenshot("Creación miembro 2")
         cy.get('form').within(() => {
             cy.get('input[data-test-input="member-name"]').type(newMemberName2)
             cy.get('input[data-test-input="member-email"]').type(newEmail2)    
         })
+        screenshotTaker.screenshot("Formulario llenado miembro 2")
         cy.get('span[data-test-task-button-state="idle"]').click()
         cy.wait(1000)
         cy.goToPage("members")
         cy.wait(1000)
+        screenshotTaker.screenshot("Miembro 2 creado")
         cy.get('a[data-test-new-member-button="true"]').click()
         cy.wait(1000)
+        screenshotTaker.screenshot("Creación miembro 3")
         const newMemberName3 = faker.person.fullName()
         const newEmail3 = faker.internet.email()
         cy.get('form').within(() => {
             cy.get('input[data-test-input="member-name"]').type(newMemberName3)
             cy.get('input[data-test-input="member-email"]').type(newEmail3)    
         })
+        screenshotTaker.screenshot("Formulario llenado miembro 3")
         cy.get('span[data-test-task-button-state="idle"]').click()
         cy.wait(1000)
         cy.goToPage("members")
         cy.wait(1000)
+        screenshotTaker.screenshot("Miembro 3 creado")
         cy.get('.gh-members-list-searchfield').clear()
         cy.get('.gh-members-list-searchfield').type(newMemberName)
         cy.wait(500)
+        screenshotTaker.screenshot("Verificación búsqueda miembro 1")
         cy.get('h3.gh-members-list-name').then(($header)=>{
             expect($header[0].innerText).to.equal(newMemberName)
         })
@@ -53,6 +67,7 @@ describe('Buscar tres miembros previamente creados a través de la barra de bús
         cy.get('.gh-members-list-searchfield').clear()
         cy.get('.gh-members-list-searchfield').type(newMemberName2)
         cy.wait(500)
+        screenshotTaker.screenshot("Verificación búsqueda miembro 2")
         cy.get('h3.gh-members-list-name').then(($header)=>{
             expect($header[0].innerText).to.equal(newMemberName2)
         })
@@ -60,6 +75,7 @@ describe('Buscar tres miembros previamente creados a través de la barra de bús
         cy.get('.gh-members-list-searchfield').clear()
         cy.get('.gh-members-list-searchfield').type(newMemberName3)
         cy.wait(500)
+        screenshotTaker.screenshot("Verificación búsqueda miembro 3")
         cy.get('h3.gh-members-list-name').then(($header)=>{
             expect($header[0].innerText).to.equal(newMemberName3)
         })
