@@ -25,9 +25,11 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 require("cypress-iframe");
 const { faker } = require("@faker-js/faker");
-
+const { FAKER_SEED } = require("./utils");
+faker.seed(FAKER_SEED);
 Cypress.Commands.add("goToPage", (pageUri) => {
   cy.visit(`${Cypress.env("ghost_url")}/#/${pageUri}`);
+  cy.wait(200);
 });
 Cypress.Commands.add("login", () => {
   cy.session(Cypress.env("ghost_email"), () => {
@@ -50,23 +52,31 @@ Cypress.Commands.add("resetDataForTest", () => {
     const button = $btn.get(1);
     button.click();
   });
+  cy.get(".gh-alert-close").click();
+  cy.wait(500);
 });
 
-Cypress.Commands.add("createPost", (publish = true) => {
+Cypress.Commands.add("createPost", (publish = true, screenshotTaker = null) => {
   cy.goToPage("dashboard");
+  screenshotTaker && screenshotTaker.screenshot("Inicio agregar post");
   const postName = faker.word.words({ min: 1, max: 5 });
   const postContent = faker.lorem.paragraphs(3);
   // Visit the Posts page
   cy.get('a[title="New post"]').click();
+  screenshotTaker && screenshotTaker.screenshot("Agregar post");
   // Fill the form
   cy.get('textarea[placeholder="Post title"]').type(postName);
+  screenshotTaker && screenshotTaker.screenshot("Ingresar titulo");
   cy.get(".koenig-lexical").eq(1).click().type(postContent);
-
+  screenshotTaker && screenshotTaker.screenshot("Ingresar contenido");
   // Publish it
   if (publish) {
     cy.contains("Publish").click();
+    screenshotTaker && screenshotTaker.screenshot("Publicar post");
     cy.contains("Continue, final review").click();
-    cy.contains("Publish post, right now").click();
+    screenshotTaker && screenshotTaker.screenshot("Continuar");
+    cy.contains("right now").click();
+    screenshotTaker && screenshotTaker.screenshot("Publicar post ahora");
   }
   cy.url().then((url) => {
     return cy.wrap({
@@ -102,12 +112,12 @@ Cypress.Commands.add("deleteAllPosts", () => {
 Cypress.Commands.add("deleteAllMembers", () => {
   cy.goToPage("members");
   cy.wait(1000);
-  const memberSelector = '.gh-list-data';
+  const memberSelector = ".gh-list-data";
   cy.get("body").then(($body) => {
     // synchronously query for element
-    for (let i = 0; i < $body.find(memberSelector).length/5; i++){
-      cy.log($body.find(memberSelector).length/5);
-      cy.get('.gh-members-list-name').then(($header)=>{
+    for (let i = 0; i < $body.find(memberSelector).length / 5; i++) {
+      cy.log($body.find(memberSelector).length / 5);
+      cy.get(".gh-members-list-name").then(($header) => {
         $header[0].click();
       });
       cy.wait(1000);
@@ -118,12 +128,12 @@ Cypress.Commands.add("deleteAllMembers", () => {
       cy.get('button[data-test-button="confirm"]').click();
       cy.wait(300);
     }
-    if ($body.find(memberSelector).length/5 == 0) {
+    if ($body.find(memberSelector).length / 5 == 0) {
       cy.log("No members to delete");
     }
   });
 });
 
 Cypress.Commands.add("takeScreenshot", (filePath) => {
-  cy.screenshot(filePath, {overwrite:true});
+  cy.screenshot(filePath, { overwrite: true });
 });
