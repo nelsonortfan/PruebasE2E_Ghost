@@ -31,9 +31,23 @@ Cypress.Commands.add("goToPage", (pageUri) => {
   cy.visit(`${Cypress.env("ghost_url")}/#/${pageUri}`);
   cy.wait(200);
 });
+Cypress.Commands.add("goToPageOld", (pageUri) => {
+  cy.visit(`${Cypress.env("ghost_url_old")}/#/${pageUri}`);
+  cy.wait(200);
+});
 Cypress.Commands.add("login", () => {
   cy.session(Cypress.env("ghost_email"), () => {
     cy.goToPage("signin");
+    cy.wait(1000);
+    cy.get('input[name="identification"]').type(Cypress.env("ghost_email"));
+    cy.get('input[name="password"]').type(Cypress.env("ghost_password"));
+    cy.contains("Sign in").click();
+    cy.wait(1000);
+  });
+});
+Cypress.Commands.add("loginOld", () => {
+  cy.session(Cypress.env("ghost_email"), () => {
+    cy.goToPageOld("signin");
     cy.wait(1000);
     cy.get('input[name="identification"]').type(Cypress.env("ghost_email"));
     cy.get('input[name="password"]').type(Cypress.env("ghost_password"));
@@ -126,6 +140,29 @@ Cypress.Commands.add("deleteAllMembers", () => {
       cy.get('button[data-test-button="delete-member"]').click();
       cy.wait(300);
       cy.get('button[data-test-button="confirm"]').click();
+      cy.wait(300);
+    }
+    if ($body.find(memberSelector).length / 5 == 0) {
+      cy.log("No members to delete");
+    }
+  });
+});
+
+Cypress.Commands.add("deleteAllMembersOld", () => {
+  cy.goToPageOld("members");
+  cy.wait(1000);
+  const memberSelector = ".gh-list-data";
+  cy.get("body").then(($body) => {
+    // synchronously query for element
+    for (let i = 0; i < $body.find(memberSelector).length / 5; i++) {
+      cy.log($body.find(memberSelector).length / 5);
+      cy.get(".gh-members-list-name").then(($header) => {
+        $header[0].click();
+      });
+      cy.wait(1000);
+      cy.get('button[class="gh-btn gh-btn-red gh-btn-icon mt14"]').click();
+      cy.wait(300);
+      cy.get('button[class="gh-btn gh-btn-red gh-btn-icon ember-view"]').click();
       cy.wait(300);
     }
     if ($body.find(memberSelector).length / 5 == 0) {
