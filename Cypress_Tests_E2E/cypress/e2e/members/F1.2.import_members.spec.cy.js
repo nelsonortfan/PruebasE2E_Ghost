@@ -8,7 +8,7 @@ describe('Importar miembros', () => {
         cy.wait(1000)
     })
     it('Import members and delete them', ()=>{
-        const screenshotTaker = new ScreenshotHelper("F1.2")
+        const screenshotTaker = new ScreenshotHelper("members/F1.2")
         cy.get('button[data-test-button="members-actions"]').click()
         cy.wait(500)
         screenshotTaker.screenshot("Botones de acciones - Botón de importar")

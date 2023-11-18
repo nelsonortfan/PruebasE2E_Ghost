@@ -9,7 +9,7 @@ describe('Buscar tres miembros previamente creados a través de la barra de bús
         cy.wait(1000)
     })
     it('Create 3 new member and search them', ()=>{
-        const screenshotTaker = new ScreenshotHelper("F1.3")
+        const screenshotTaker = new ScreenshotHelper("members/F1.3")
         screenshotTaker.screenshot("Inicio test, creando miembro 1")
         cy.get('a[data-test-new-member-button="true"]').click()
         cy.wait(1000)

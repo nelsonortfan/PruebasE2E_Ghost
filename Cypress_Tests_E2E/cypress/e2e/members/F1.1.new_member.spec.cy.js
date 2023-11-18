@@ -9,7 +9,7 @@ describe('Crear un nuevo miembro', () => {
         cy.wait(1000)
     })
     it('Create a new member', ()=>{
-        const screenshotTaker = new ScreenshotHelper("F1.1")
+        const screenshotTaker = new ScreenshotHelper("members/F1.1")
         screenshotTaker.screenshot("Inicio agregar miembro")
         cy.get('a[data-test-new-member-button="true"]').click()
         cy.wait(1000)

@@ -9,7 +9,7 @@ describe('Filtrar tres miembros por email previamente creados a travÃ©s del botÃ
         cy.wait(1000)
     })
     it('Create 3 new member and filter them', ()=>{
-        const screenshotTaker = new ScreenshotHelper("F1.4")
+        const screenshotTaker = new ScreenshotHelper("members/F1.4")
         screenshotTaker.screenshot("Inicio test, creando miembro 1")
         cy.get('a[data-test-new-member-button="true"]').click()
         cy.wait(1000)
