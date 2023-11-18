@@ -8,7 +8,7 @@ describe('Cambiar el titulo del sitio y verificar que se haya guardado bien', ()
         cy.wait(1000)
     })
     it('Change site title', ()=>{
-        const screenshotTaker = new ScreenshotHelper("F5.4")
+        const screenshotTaker = new ScreenshotHelper("settings/F5.4")
         screenshotTaker.screenshot("Inicio test, página settings")
         const newTitle = faker.internet.domainWord()
         cy.get('button[data-test-toggle-pub-info=""]').click()
