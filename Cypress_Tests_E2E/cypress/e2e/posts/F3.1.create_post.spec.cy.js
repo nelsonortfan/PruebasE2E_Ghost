@@ -1,14 +1,18 @@
+const { ScreenshotHelper } = require("../../support/utils");
+
 describe("Test create a Post from start to finish", () => {
   beforeEach(() => {
     cy.login();
-    cy.deleteAllPosts();
+    cy.resetDataForTest();
   });
 
   it("Create a new post", () => {
-    cy.createPost().then((postData) => {
+    const screenshotTaker = new ScreenshotHelper("posts/F3.1");
+    cy.createPost(true, screenshotTaker).then((postData) => {
       // Check that the post was created
       const { id, title, content } = postData;
       cy.goToPage("posts");
+      screenshotTaker.screenshot("Listar posts");
       // There should only be one post
       let postSelector = ".gh-posts-list-item-group";
       cy.get(postSelector).should("have.length", 1);
@@ -18,6 +22,7 @@ describe("Test create a Post from start to finish", () => {
       item.should("contain.text", title);
       // Post should have the correct title
       item.click();
+      screenshotTaker.screenshot("Ver post");
       cy.url().then((url) => {
         expect(url).to.contain(`/editor/post/${id}`);
       });
