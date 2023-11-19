@@ -7,7 +7,6 @@ describe('Crear un tag y luego eliminar todo el contenido de la DB desde setting
     it('Delete all database data successfully', () => {
         const public_tag_name_uno = "Test tag name uno"
         const public_tag_description_uno = "test_description"
-        cy.visit('http://localhost:2368/ghost/#')
         cy.contains('Tags').click()
         cy.contains('New tag').click()
         cy.get('#tag-name').type(public_tag_name_uno)
