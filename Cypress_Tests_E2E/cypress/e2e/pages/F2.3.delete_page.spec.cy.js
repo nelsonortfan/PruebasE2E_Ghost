@@ -12,6 +12,7 @@ describe('Eliminar una Page creada', () => {
 	var page_title_initial = 'Titulo inicial para eliminar'
 	
     beforeEach(() => {
+		cy.viewport(1000, 660);
         cy.login()
         cy.resetDataForTest()
     })

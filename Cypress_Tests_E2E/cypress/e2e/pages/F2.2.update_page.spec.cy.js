@@ -8,6 +8,7 @@ describe('Editar una page ya existente, cambiar el titulo y verificar que se enc
 	var page_title_initial = 'El titulo inicial es este'
 	
     beforeEach(() => {
+		cy.viewport(1000, 660);
         cy.login()
         cy.resetDataForTest()
     })

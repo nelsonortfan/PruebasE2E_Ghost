@@ -7,6 +7,7 @@ describe('Crear una nueva Page y guardarlo exitosamente, finalmente verificar qu
 	var description = `Descripcion para la pagina de prueba a crear`
 	
     beforeEach(() => {
+		cy.viewport(1000, 660);
         cy.login()
         cy.resetDataForTest()
     })

@@ -8,6 +8,7 @@ describe('Crear 2 pages con el title repetido', () => {
 	var page_title_initial = 'Titulo inicial repetido' + Date.now()
 	
     beforeEach(() => {
+		cy.viewport(1000, 660);
         cy.login()
         cy.resetDataForTest()
     })
