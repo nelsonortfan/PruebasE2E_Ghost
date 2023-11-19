@@ -12,16 +12,17 @@ describe('Eliminar una Page creada', () => {
 	var page_title_initial = 'Titulo inicial para eliminar'
 	
     beforeEach(() => {
-        cy.login()
-        cy.resetDataForTest()
+        cy.viewport(1000, 660);
+        cy.loginOld();
+        cy.resetDataForTestOld();
     })
 
     it('Should create a new page and delete it successfully', () => {
 		
-		const screenshotTaker = new ScreenshotHelper("F2.3_initial_resolution")
+		const screenshotTaker = new ScreenshotHelper("pages_old/F2.3")
        
 		cy.wait(1000) 
-        cy.goToPage("pages/");
+        cy.goToPageOld("pages/");
 		cy.wait(3000)
 		screenshotTaker.screenshot("Pantalla inicial de pages")
 		cy.wait(1000)
@@ -33,7 +34,7 @@ describe('Eliminar una Page creada', () => {
 		cy.wait(1000)
 		cy.get('button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon.ember-view').click()			
 		cy.wait(1000)
-		cy.goToPage("pages/");
+		cy.goToPageOld("pages/");
 		cy.wait(1000)
 		cy.contains(page_title_initial)		
 		cy.wait(1000)        
@@ -53,7 +54,7 @@ describe('Eliminar una Page creada', () => {
 		cy.get('.modal-footer').get('.gh-btn.gh-btn-red.gh-btn-icon.ember-view').
 		contains('Delete').click({force: true})
 		cy.wait(1000) 
-        cy.goToPage("pages/");
+        cy.goToPageOld("pages/");
 		cy.wait(1000)
 		cy.contains(page_title_initial).should('not.exist')		
 		cy.wait(1000)		
