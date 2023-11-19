@@ -25,13 +25,15 @@ After(async function () {
   await this.deviceClient.stopKrakenForUserId(this.userId);
 });
 
-AfterStep(async function () {
+AfterStep(async function (step) {
   // Needs to be done here to prevent loading screens
   await new Promise((resolve) => setTimeout(resolve, 200));
   await this.driver.takeScreenshot().then(async (data) => {
     const base64Data = data.replace(/^data:image\/png;base64,/, "");
     fs.writeFile(
-      `${this.screenshotPath}/${this.currentStepNumber}.png`,
+      `${this.screenshotPath}/${this.currentStepNumber}. ${
+        step.pickle.steps[this.currentStepNumber - 1].text
+      }.png`,
       base64Data,
       "base64",
       function (err) {
