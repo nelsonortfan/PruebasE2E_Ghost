@@ -48,7 +48,7 @@ describe('Eliminar una Page creada', () => {
 		cy.wait(1000)		
 		cy.get('.modal-content').should('be.visible')
 		cy.wait(2000)
-		screenshotTaker.screenshot("Pantalla mensaje para borrar 1")	
+		screenshotTaker.screenshot("Pantalla mensaje para borrar")	
 		cy.get('.modal-footer').get('.gh-btn.gh-btn-red.gh-btn-icon.ember-view').		
 		contains('Delete').click({force: true})
 		screenshotTaker.screenshot("Pantalla mensaje borrado confirmado")	
