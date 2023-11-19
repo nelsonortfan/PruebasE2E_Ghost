@@ -6,7 +6,7 @@ describe('Editar un tag ya existente, cambiar el nombre y verificar que se encue
     })
 
     it('Should create tag and the edit this correctly', () => {
-        const screenshotTaker = new ScreenshotHelper("F4.2")
+        const screenshotTaker = new ScreenshotHelper("tags/F4.2")
         const tag_name = "Test tag name"
         const tag_description = "test_description"
         cy.contains('Tags').click()

@@ -7,7 +7,7 @@ describe('Crear un tag nuevo y guardarlo exitosamente, finalmente verificar que 
     })
 
     it('Should create tag and should be visible in tags list', () => {
-        const screenshotTaker = new ScreenshotHelper("F4.1")
+        const screenshotTaker = new ScreenshotHelper("tags/F4.1")
         const tag_name = "Test tag name"
         const tag_description = "test_description"
         cy.contains('Tags').click()

@@ -7,7 +7,7 @@ describe('Crear 3 tags, 1 internos y 2 públicos, luego filtrar los tags existen
     })
 
     it('Should create 2 internal tag and one public tag the filter and proves that the correct number are listed', () => {
-        const screenshotTaker = new ScreenshotHelper("F4.4")
+        const screenshotTaker = new ScreenshotHelper("tags/F4.4")
         const public_tag_name_uno = "Test tag name uno"
         const public_tag_description_uno = "test_description uno"
         const internal_tag_name_uno = "#internal Test tag name uno"

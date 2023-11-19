@@ -8,7 +8,7 @@ describe('Crear un tag, verificar que este listado, luego eliminar ese tag  y  v
     })
 
     it('Should create tag and then delete it finally proves that is not listed', () => {
-        const screenshotTaker = new ScreenshotHelper("F4.3-old")
+        const screenshotTaker = new ScreenshotHelper("tags_old/F4.3")
         const tag_name = "Test tag name"
         const tag_description = "test_description"
         cy.contains('Tags').click()

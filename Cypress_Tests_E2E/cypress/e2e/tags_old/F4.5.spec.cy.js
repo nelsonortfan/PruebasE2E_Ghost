@@ -8,7 +8,7 @@ describe('Crear un tag con elementos inválidos y verificar errores, finalmente 
     })
 
     it('Should try to create a tag with a description with more than 500 characters', () => {
-        const screenshotTaker = new ScreenshotHelper("F4.5-old")
+        const screenshotTaker = new ScreenshotHelper("tags_old/F4.5")
         const public_tag_name_uno = "Test tag name uno"
         //description with more than 500 elements
         const public_tag_description_uno = "test_description".repeat(40)
