@@ -3,7 +3,8 @@ const { ScreenshotHelper } = require("../../support/utils");
 describe('Crear un tag, verificar que este listado, luego eliminar ese tag  y  verificar que no siga listado', () => {
     beforeEach(()=>{
         cy.loginOld()
-        cy.goToPageOld("settings/general")
+        cy.resetDataForTestOld();
+        cy.goToPageOld("tags")
         cy.wait(1000)
     })
 
@@ -45,7 +46,7 @@ describe('Crear un tag, verificar que este listado, luego eliminar ese tag  y  v
                 return false;
             } else {
                 cy.wait(500)
-                cy.visit('http://localhost:2368/ghost/#/tags')
+                cy.goToPageOld("tags")
                 screenshotTaker.screenshot("Verificar que no este listado")
                 cy.get('li.gh-list-row.gh-tags-list-item').should('have.length', 0);
                 //verify that the tag is not listed

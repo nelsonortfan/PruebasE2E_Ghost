@@ -44,7 +44,7 @@ describe('Crear un tag, verificar que este listado, luego eliminar ese tag  y  v
                 return false;
             } else {
                 cy.wait(500)
-                cy.visit('http://localhost:2368/ghost/#/tags')
+                cy.goToPage("tags");
                 screenshotTaker.screenshot("Verificar que no este listado")
                 cy.get('li.gh-list-row.gh-tags-list-item').should('have.length', 0);
                 //verify that the tag is not listed
