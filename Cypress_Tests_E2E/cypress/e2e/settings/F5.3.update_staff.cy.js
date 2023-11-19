@@ -1,7 +1,7 @@
 const { ScreenshotHelper } = require("../../support/utils");
 var path = require('path');
 
-describe("Test set mailgun credentias", () => {
+describe("Test set Staff social networks", () => {
 	
   var userLocation = 'Bogota-Colombia'
   var userWebSite = 'http://mywebsite.com'
@@ -13,7 +13,7 @@ describe("Test set mailgun credentias", () => {
     cy.login();
   });
   
-  it("Should set mailgun credentials", () => {
+  it("Should set Staff social networks", () => {
 	  
 		const screenshotTaker = new ScreenshotHelper("settings/F5.3")
     
