@@ -3,26 +3,23 @@ let createdPosts = [null, null];
 describe("Test edit a published post", () => {
   beforeEach(() => {
     cy.viewport(1000, 660);
-    cy.login();
-    cy.resetDataForTest();
-    cy.createPost().then((postData) => {
+    cy.loginOld();
+    cy.resetDataForTestOld();
+    cy.createPostOld().then((postData) => {
       createdPosts[1] = postData;
     });
-    cy.createPost().then((postData) => {
+    cy.createPostOld().then((postData) => {
       createdPosts[0] = postData;
     });
   });
   it("Delete a post.", () => {
-    cy.on("uncaught:exception", (err, runnable) => {
-      return false;
-    });
-    const screenshotTaker = new ScreenshotHelper("posts/F3.3");
-    cy.goToPage("posts");
+    const screenshotTaker = new ScreenshotHelper("posts_old/F3.3");
+    cy.goToPageOld("posts");
     screenshotTaker.screenshot("Listar posts.");
     // Check that the post was created
-    cy.get(".gh-posts-list-item-group").should("have.length", 2);
-    // Delete the post
-    const toDelete = cy.get(".gh-posts-list-item-group").eq(0);
+    cy.get(".gh-posts-list-item").should("have.length", 2);
+    // // Delete the post
+    const toDelete = cy.get(".gh-posts-list-item").eq(0);
     toDelete.click();
     cy.wait(200);
     screenshotTaker.screenshot("Abrir post.");
@@ -30,11 +27,11 @@ describe("Test edit a published post", () => {
     cy.get("button[title='Settings']").click();
     cy.wait(200);
     screenshotTaker.screenshot("Abrir ajustes.");
-    // Delete the post
-    cy.contains("Delete").scrollIntoView();
+    // // Delete the post
+    cy.contains("Delete post").scrollIntoView();
     cy.wait(200);
     screenshotTaker.screenshot("Abrir eliminar.");
-    cy.contains("Delete").click();
+    cy.contains("Delete post").click();
     // Confirm deletion
     cy.wait(200);
     cy.get(".gh-btn-red").click();
@@ -43,10 +40,10 @@ describe("Test edit a published post", () => {
     screenshotTaker.screenshot("Post eliminado.");
     // Check that the post was deleted
     cy.wait(200);
-    cy.goToPage("posts");
+    cy.goToPageOld("posts");
     screenshotTaker.screenshot("Listar posts.");
-    cy.get(".gh-posts-list-item-group").should("have.length", 1);
-    cy.get(".gh-posts-list-item-group")
+    cy.get(".gh-posts-list-item").should("have.length", 1);
+    cy.get(".gh-posts-list-item")
       .eq(0)
       .should("contain.text", createdPosts[1].title);
     cy.visit(createdPosts[0].url, { failOnStatusCode: false });

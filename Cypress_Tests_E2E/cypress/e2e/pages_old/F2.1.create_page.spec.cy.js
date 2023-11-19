@@ -8,43 +8,46 @@ describe('Crear una nueva Page y guardarlo exitosamente, finalmente verificar qu
 	
     beforeEach(() => {
 		cy.viewport(1000, 660);
-        cy.login()
-        cy.resetDataForTest()
+        cy.loginOld();
+        cy.resetDataForTestOld();
     })
 
     it('Should create a new page', () => {
 		
-		const screenshotTaker = new ScreenshotHelper("pages/F2.1")	
+		const screenshotTaker = new ScreenshotHelper("pages_old/F2.1")	
 		
 		cy.wait(1000) 
-        cy.goToPage("pages/");
-		cy.wait(3000)
+        cy.goToPageOld("pages/");
+		cy.wait(1000)
 		screenshotTaker.screenshot("Pantalla inicial de pages")
 		cy.wait(1000)
 		cy.contains('New page').click()
-		cy.get('textarea[placeholder="Page title"]').type(page_name)
-		cy.get('.koenig-lexical').eq(1).click().type(description)
+		cy.get('textarea[placeholder="Page Title"]').type(page_name)
+		cy.get('div[data-placeholder="Begin writing your page..."]').click().type(description)
 		cy.wait(1000)
 		screenshotTaker.screenshot("Pantalla campos de new page")
 		cy.contains('Publish').click()
 		cy.wait(1000)
 		screenshotTaker.screenshot("Pantalla publicacion page")
-		cy.contains('Continue, final review').click()
+		cy.get('button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon.ember-view').click()
 		cy.wait(1000)
 		screenshotTaker.screenshot("Pantalla continuacion page")
-		cy.contains('Publish page, right now').click()				
 		cy.wait(1000)
+		cy.contains('Pages').click()				
+		cy.wait(1000)		
 		cy.contains(page_name)
-		cy.contains(description)		
 		cy.wait(1000) 
 		screenshotTaker.screenshot("Pantalla validacion page")
-        cy.goToPage("pages/");
+        cy.goToPageOld("pages/");
 		cy.wait(1000)		
 		cy.contains(page_name)		
-		const item = cy.get('.feature-memberAttribution').get('div[role="menuitem"]').eq(0)
+		const item = cy.get('h3.gh-content-entry-title')
         item.contains(
             page_name
           )	
 		screenshotTaker.screenshot("Pantalla validacion creacion de page")
+		
+		
     })
+	
 })

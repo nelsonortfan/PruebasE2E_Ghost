@@ -1,13 +1,15 @@
 const { ScreenshotHelper } = require("../../support/utils");
 
 describe('Crear un tag con elementos inválidos y verificar errores, finalmente verificar que no se encuentre listado.', () => {
-    beforeEach(() => {
-        cy.login()
-        cy.resetDataForTest()
+    beforeEach(()=>{
+        cy.loginOld()
+        cy.resetDataForTestOld();
+        cy.goToPageOld("tags")
+        cy.wait(1000)
     })
 
     it('Should try to create a tag with a description with more than 500 characters', () => {
-        const screenshotTaker = new ScreenshotHelper("tags/F4.5")
+        const screenshotTaker = new ScreenshotHelper("tags_old/F4.5")
         const public_tag_name_uno = "Test tag name uno"
         //description with more than 500 elements
         const public_tag_description_uno = "test_description".repeat(40)
@@ -20,13 +22,16 @@ describe('Crear un tag con elementos inválidos y verificar errores, finalmente 
         cy.get('#tag-description').type(public_tag_description_uno)
         screenshotTaker.screenshot("LLenar la descripcion tag")
         //random click
-        cy.contains('Meta data').click()
+        cy.contains('Save').click()
         screenshotTaker.screenshot("Verificar mensaje de error")
         //verify error
         cy.get('p.response').contains('Description cannot be longer than 500 characters.')
         //modal leave page
         cy.contains('Tags').click()
-        cy.get('button.gh-btn-red').click()
+        cy.get('button.gh-btn-red').then(($btn) => {
+            const button = $btn.get(1)
+            button.click()
+        })
         screenshotTaker.screenshot("Verificar tag no este listado")
         cy.contains('Public tags').click()
         cy.get('li.gh-list-row.gh-tags-list-item').should('have.length', 0);

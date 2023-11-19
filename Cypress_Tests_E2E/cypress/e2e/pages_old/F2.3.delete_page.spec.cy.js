@@ -12,54 +12,53 @@ describe('Eliminar una Page creada', () => {
 	var page_title_initial = 'Titulo inicial para eliminar'
 	
     beforeEach(() => {
-		cy.viewport(1000, 660);
-        cy.login()
-        cy.resetDataForTest()
+        cy.viewport(1000, 660);
+        cy.loginOld();
+        cy.resetDataForTestOld();
     })
 
     it('Should create a new page and delete it successfully', () => {
 		
-		const screenshotTaker = new ScreenshotHelper("pages/F2.3")
+		const screenshotTaker = new ScreenshotHelper("pages_old/F2.3")
        
 		cy.wait(1000) 
-        cy.goToPage("pages/");
+        cy.goToPageOld("pages/");
 		cy.wait(3000)
 		screenshotTaker.screenshot("Pantalla inicial de pages")
+		cy.wait(1000)
 		cy.contains(page_title_initial).should('not.exist')
 		cy.contains('New page').click()
-		cy.get('textarea[placeholder="Page title"]').type(page_title_initial)
-		cy.get('.koenig-lexical').eq(1).click().type(description)
-		cy.contains('Publish').click()
-		cy.contains('Continue, final review').click()
-		cy.contains('Publish page, right now').click()		
+		cy.get('textarea[placeholder="Page Title"]').type(page_title_initial)
+		cy.get('div[data-placeholder="Begin writing your page..."]').click().type(description)
+		cy.contains('Publish').click()			
 		cy.wait(1000)
-		cy.contains(page_title_initial)
-		cy.contains(description)
-		cy.wait(1000) 
-        cy.goToPage("pages/");
+		cy.get('button.gh-btn.gh-btn-blue.gh-publishmenu-button.gh-btn-icon.ember-view').click()			
 		cy.wait(1000)
+		cy.goToPageOld("pages/");
+		cy.wait(1000)
+		cy.contains(page_title_initial)		
+		cy.wait(1000)        
 		screenshotTaker.screenshot("Pantalla validar pagina creada")
-		cy.get('.feature-memberAttribution').get('div[role="menuitem"]').eq(0).click()
+		cy.wait(1000) 
+		cy.get('a[title="Edit this page"]').eq(0).click()
 		cy.wait(1000)
 		cy.get('button[title="Settings"]').click()
 		cy.wait(2000)
 		screenshotTaker.screenshot("Pantalla boton para borrar")		
-		cy.get('.settings-menu-delete-button').click()
+		cy.wait(1000)
+		cy.contains("Delete").click()
 		cy.wait(1000)		
 		cy.get('.modal-content').should('be.visible')
 		cy.wait(2000)
 		screenshotTaker.screenshot("Pantalla mensaje para borrar")	
-		cy.get('.modal-footer').get('.gh-btn.gh-btn-red.gh-btn-icon.ember-view').		
+		cy.get('.modal-footer').get('.gh-btn.gh-btn-red.gh-btn-icon.ember-view').
 		contains('Delete').click({force: true})
 		screenshotTaker.screenshot("Pantalla mensaje borrado confirmado")	
-		cy.wait(1000)
-		cy.contains('All pages')
 		cy.wait(1000) 
-        cy.goToPage("pages/");
+        cy.goToPageOld("pages/");
 		cy.wait(1000)
 		cy.contains(page_title_initial).should('not.exist')		
-		cy.wait(1000)
-		cy.wait(1000)
+		cy.wait(1000)		
 		screenshotTaker.screenshot("Pantalla validar pagina eliminada")
 		
     })

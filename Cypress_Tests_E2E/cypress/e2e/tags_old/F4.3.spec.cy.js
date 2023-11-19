@@ -1,13 +1,15 @@
 const { ScreenshotHelper } = require("../../support/utils");
 
 describe('Crear un tag, verificar que este listado, luego eliminar ese tag  y  verificar que no siga listado', () => {
-    beforeEach(() => {
-        cy.login()
-        cy.resetDataForTest()
+    beforeEach(()=>{
+        cy.loginOld()
+        cy.resetDataForTestOld();
+        cy.goToPageOld("tags")
+        cy.wait(1000)
     })
 
     it('Should create tag and then delete it finally proves that is not listed', () => {
-        const screenshotTaker = new ScreenshotHelper("tags/F4.3")
+        const screenshotTaker = new ScreenshotHelper("tags_old/F4.3")
         const tag_name = "Test tag name"
         const tag_description = "test_description"
         cy.contains('Tags').click()
@@ -44,7 +46,7 @@ describe('Crear un tag, verificar que este listado, luego eliminar ese tag  y  v
                 return false;
             } else {
                 cy.wait(500)
-                cy.goToPage("tags");
+                cy.goToPageOld("tags")
                 screenshotTaker.screenshot("Verificar que no este listado")
                 cy.get('li.gh-list-row.gh-tags-list-item').should('have.length', 0);
                 //verify that the tag is not listed
