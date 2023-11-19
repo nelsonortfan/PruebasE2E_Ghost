@@ -10,13 +10,19 @@ Before(async function (scenario) {
   const featureCode = path
     .basename(scenario.gherkinDocument.uri)
     .split(".feature")[0];
-  const pathToset = `./screenshots/${featureName}/${featureCode}`;
+  const pathToset = path.join(
+    path.resolve("./"),
+    "screenshots",
+    featureName,
+    featureCode
+  );
+
   this.screenshotPath = pathToset;
   if (!fs.existsSync(pathToset)) {
     fs.mkdirSync(pathToset, { recursive: true });
   } else {
     fs.readdirSync(pathToset).forEach((file) => {
-      fs.unlinkSync(`${pathToset}/${file}`);
+      fs.unlinkSync(path.join(pathToset, file));
     });
   }
 });
@@ -31,9 +37,12 @@ AfterStep(async function (step) {
   await this.driver.takeScreenshot().then(async (data) => {
     const base64Data = data.replace(/^data:image\/png;base64,/, "");
     fs.writeFile(
-      `${this.screenshotPath}/${this.currentStepNumber}. ${
-        step.pickle.steps[this.currentStepNumber - 1].text
-      }.png`,
+      path.join(
+        this.screenshotPath,
+        `${this.currentStepNumber}. ${
+          step.pickle.steps[this.currentStepNumber - 1].text
+        }.png`
+      ),
       base64Data,
       "base64",
       function (err) {
