@@ -3,6 +3,7 @@ const { ScreenshotHelper } = require("../../support/utils");
 var path = require('path');
 describe('Crear un nuevo miembro', () => {
     beforeEach(()=>{
+        cy.viewport(1000, 660);
         cy.loginOld()
         cy.deleteAllMembersOld()
         cy.goToPageOld("members")

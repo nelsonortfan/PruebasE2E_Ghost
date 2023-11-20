@@ -71,7 +71,7 @@ Cypress.Commands.add("resetDataForTestOld", () => {
   cy.goToPageOld("settings/labs");
   cy.get("body").then((body) => {
     if (body.find(".gh-alert-close", { timeout: 1000 }).length > 0) {
-      cy.get(element).click();
+      //cy.get(element).click();
       cy.wait(100);
     }
     cy.get("button.js-delete").click();

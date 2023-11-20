@@ -1,5 +1,6 @@
 describe('Crear un tag y luego eliminar todo el contenido de la DB desde settings - labs - delete all content y finalmente verificar que no hayan tags listados', () => {
     beforeEach(() => {
+        cy.viewport(1000, 660);
         cy.login()
         cy.resetDataForTest()
     })

@@ -2,6 +2,7 @@ const { ScreenshotHelper } = require("../../support/utils");
 
 describe('Crear un tag, verificar que este listado, luego eliminar ese tag  y  verificar que no siga listado', () => {
     beforeEach(() => {
+        cy.viewport(1000, 660);
         cy.login()
         cy.resetDataForTest()
     })

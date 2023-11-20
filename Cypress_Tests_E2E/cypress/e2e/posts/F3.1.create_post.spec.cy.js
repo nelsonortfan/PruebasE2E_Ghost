@@ -2,6 +2,7 @@ const { ScreenshotHelper } = require("../../support/utils");
 
 describe("Test create a Post from start to finish", () => {
   beforeEach(() => {
+    cy.viewport(1000, 660);
     cy.login();
     cy.resetDataForTest();
   });

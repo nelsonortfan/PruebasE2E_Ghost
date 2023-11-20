@@ -2,6 +2,7 @@ const { ScreenshotHelper } = require("../../support/utils");
 
 describe('Crear un tag con elementos inválidos y verificar errores, finalmente verificar que no se encuentre listado.', () => {
     beforeEach(()=>{
+        cy.viewport(1000, 660);
         cy.loginOld()
         cy.resetDataForTestOld();
         cy.goToPageOld("tags")
