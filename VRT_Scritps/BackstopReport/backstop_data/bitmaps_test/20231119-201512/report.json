@@ -1,0 +1,58 @@
+{
+  "testSuite": "BackstopJS",
+  "tests": [
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_1Inicio_test_creando_miembro_1png_0_document_0_Default.png",
+        "test": "../bitmaps_test/20231119-201512/backstop_default_1Inicio_test_creando_miembro_1png_0_document_0_Default.png",
+        "selector": "document",
+        "fileName": "backstop_default_1Inicio_test_creando_miembro_1png_0_document_0_Default.png",
+        "label": "1.Inicio test, creando miembro 1.png",
+        "misMatchThreshold": 0.1,
+        "url": "file:///Users/juanardila/Documents/Posgrado/4103/Entrega semana 5/PruebasE2E_Ghost/Cypress_Tests_E2E/cypress/screenshots/members_old/F1.3/1.Inicio test, creando miembro 1.png",
+        "referenceUrl": "file:///Users/juanardila/Documents/Posgrado/4103/Entrega semana 5/PruebasE2E_Ghost/Cypress_Tests_E2E/cypress/screenshots/members/F1.3/1.Inicio test, creando miembro 1.png",
+        "expect": 0,
+        "viewportLabel": "Default",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "rawMisMatchPercentage": 14.016155478395062,
+          "misMatchPercentage": "14.02",
+          "analysisTime": 68
+        },
+        "diffImage": "../bitmaps_test/20231119-201512/failed_diff_backstop_default_1Inicio_test_creando_miembro_1png_0_document_0_Default.png"
+      },
+      "status": "fail"
+    },
+    {
+      "pair": {
+        "reference": "../bitmaps_reference/backstop_default_2Creacin_miembro_1png_0_document_0_Default.png",
+        "test": "../bitmaps_test/20231119-201512/backstop_default_2Creacin_miembro_1png_0_document_0_Default.png",
+        "selector": "document",
+        "fileName": "backstop_default_2Creacin_miembro_1png_0_document_0_Default.png",
+        "label": "2.Creación miembro 1.png",
+        "misMatchThreshold": 0.1,
+        "url": "file:///Users/juanardila/Documents/Posgrado/4103/Entrega semana 5/PruebasE2E_Ghost/Cypress_Tests_E2E/cypress/screenshots/members_old/F1.3/2.Creación miembro 1.png",
+        "referenceUrl": "file:///Users/juanardila/Documents/Posgrado/4103/Entrega semana 5/PruebasE2E_Ghost/Cypress_Tests_E2E/cypress/screenshots/members/F1.3/2.Creación miembro 1.png",
+        "expect": 0,
+        "viewportLabel": "Default",
+        "diff": {
+          "isSameDimensions": true,
+          "dimensionDifference": {
+            "width": 0,
+            "height": 0
+          },
+          "rawMisMatchPercentage": 9.035927854938272,
+          "misMatchPercentage": "9.04",
+          "analysisTime": 63
+        },
+        "diffImage": "../bitmaps_test/20231119-201512/failed_diff_backstop_default_2Creacin_miembro_1png_0_document_0_Default.png"
+      },
+      "status": "fail"
+    }
+  ],
+  "id": "backstop_default"
+}
