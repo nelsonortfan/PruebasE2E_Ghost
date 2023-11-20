@@ -1,6 +1,7 @@
 const { ScreenshotHelper } = require("../../support/utils");
 describe('Editar un tag ya existente, cambiar el nombre y verificar que se encuentre listado con el nuevo nombre', () => {
     beforeEach(() => {
+        cy.viewport(1000, 660);
         cy.login()
         cy.resetDataForTest()
     })

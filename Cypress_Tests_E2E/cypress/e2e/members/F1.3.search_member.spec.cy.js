@@ -3,6 +3,7 @@ const { ScreenshotHelper } = require("../../support/utils");
 var path = require('path');
 describe('Buscar tres miembros previamente creados a través de la barra de búsqueda y verificar que sí salgan bien sus resultados', () => {
     beforeEach(()=>{
+        cy.viewport(1000, 660);
         cy.login()
         cy.deleteAllMembers()
         cy.goToPage("members")

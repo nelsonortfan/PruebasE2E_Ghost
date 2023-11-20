@@ -7,6 +7,10 @@ https://forum.ghost.org/t/too-many-login-attempts/15621
 
 - [Cypress](./Cypress_Tests_E2E/README.md)
 - [Kraken](./Kraken_Tests_E2E/README.md)
+- [VRT Report Script](./VRT_Scripts/README.md)
+
+##### ResembleJS Report
+- [Link to VRT Report - ResembleJS](./VRT_Scripts/reports/report.html)
 
 ### Integrates
 

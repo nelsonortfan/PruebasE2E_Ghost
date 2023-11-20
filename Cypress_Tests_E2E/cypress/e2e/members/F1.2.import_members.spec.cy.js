@@ -2,6 +2,7 @@ const { ScreenshotHelper } = require("../../support/utils");
 var path = require('path');
 describe('Importar miembros', () => {
     beforeEach(()=>{
+        cy.viewport(1000, 660);
         cy.login()
         cy.deleteAllMembers()
         cy.goToPage("members")

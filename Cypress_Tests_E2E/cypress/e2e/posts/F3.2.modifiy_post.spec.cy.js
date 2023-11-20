@@ -3,6 +3,7 @@ const { ScreenshotHelper, FAKER_SEED } = require("../../support/utils");
 let createdPost = null;
 describe("Test edit a published post", () => {
   beforeEach(() => {
+    cy.viewport(1000, 660);
     cy.login();
     cy.resetDataForTest();
     cy.createPost().then((postData) => {

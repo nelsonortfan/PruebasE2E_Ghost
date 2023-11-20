@@ -3,6 +3,7 @@ const { ScreenshotHelper, FAKER_SEED } = require("../../support/utils");
 faker.seed(FAKER_SEED);
 describe("Test set mailgun credentias", () => {
   beforeEach(() => {
+    cy.viewport(1000, 660);
     cy.login();
   });
   afterEach(() => {

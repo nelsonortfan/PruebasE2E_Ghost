@@ -2,6 +2,7 @@ const { ScreenshotHelper } = require("../../support/utils");
 const posts = [null, null, null, null];
 describe("Test post list", () => {
   beforeEach(() => {
+    cy.viewport(1000, 660);
     cy.loginOld();
     cy.resetDataForTestOld();
     cy.createPostOld().then((postData) => {

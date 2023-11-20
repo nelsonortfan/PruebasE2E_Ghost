@@ -2,6 +2,7 @@ const { ScreenshotHelper } = require("../../support/utils");
 
 describe('Crear un tag nuevo y guardarlo exitosamente, finalmente verificar que se encuentre listado', () => {
     beforeEach(() => {
+        cy.viewport(1000, 660);
         cy.login()
         cy.resetDataForTest()
     })

@@ -3,6 +3,7 @@ const { ScreenshotHelper } = require("../../support/utils");
 var path = require('path');
 describe('Cambiar el titulo del sitio y verificar que se haya guardado bien', () => {
     beforeEach(()=>{
+        cy.viewport(1000, 660);
         cy.loginOld()
         cy.goToPageOld("settings/general")
         cy.wait(1000)
