@@ -11,11 +11,14 @@ https://forum.ghost.org/t/too-many-login-attempts/15621
 
 ##### ResembleJS Report
 
+Go to VRT_Scritps folder and follow the readme
+
 - [Link to VRT Report - ResembleJS](./VRT_Scritps/results/report.html)
 
 ##### BackStopJs Report
 
-Se demora un poco en cargar.
+Go to folders VRT_Scritps -> BackstopReport and follow the readme instrucions
+Follwoing report may take a while loading
 
 - [Link to VRT Report - BackstopJS](https://uniandes-my.sharepoint.com/personal/ji_bernal27_uniandes_edu_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fji%5Fbernal27%5Funiandes%5Fedu%5Fco%2FDocuments%2FBackstopJS%20Report%20%2811%5F19%5F2023%209%5F03%5F51%20PM%29%2Ehtml&parent=%2Fpersonal%2Fji%5Fbernal27%5Funiandes%5Fedu%5Fco%2FDocuments&ga=1)
 

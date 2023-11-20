@@ -63,7 +63,7 @@ referenceFiles.forEach((referenceFile) => {
       referenceUrl: filePrepend + referenceFile,
       url: filePrepend + testFile,
       misMatchThreshold: treshold,
-      label: referenceFileName,
+      label: referenceFolder + ": " + referenceFileName,
     });
   }
 });
