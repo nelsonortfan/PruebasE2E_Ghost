@@ -10,7 +10,7 @@ https://forum.ghost.org/t/too-many-login-attempts/15621
 - [VRT Report Script](./VRT_Scripts/README.md)
 
 ##### ResembleJS Report
-- [Link to VRT Report - ResembleJS](./VRT_Scripts/reports/report.html)
+- [Link to VRT Report - ResembleJS](./VRT_Scritps/results/report.html)
 
 ### Integrates
 
