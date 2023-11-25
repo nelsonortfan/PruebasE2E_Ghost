@@ -1,10 +1,10 @@
 const { FAKER_SEED } = require("../../support/utils");
-const { TagsPageObjects } = require("../../support/tags_page_objects");
+const { TagsPageObjects } = require("../../pageObjects/Tags");
 const {faker} = require("@faker-js/faker");
 
 faker.seed(FAKER_SEED);
 
-describe('F4.5 - Create a valid description then should be showed', () => {
+describe('F4.17 - Create a tag with a custom x card successfully', () => {
     beforeEach(() => {
         //GIVEN
         cy.viewport(1000, 660);
@@ -12,21 +12,22 @@ describe('F4.5 - Create a valid description then should be showed', () => {
         cy.resetDataForTest()
     })
 
-    it('Should create a valid description then should be showed', () => {
+    it('should  Create a tag with a custom x card successfully', () => {
         //WHEN
         const tag_name = faker.lorem.words(2);
-        const tag_description = faker.lorem.words(10)
+        const title_x_card = faker.lorem.words(2);
         TagsPageObjects.clickTagsButton()
         TagsPageObjects.clickNewTagButton()
         TagsPageObjects.fillTagName(tag_name)
-        TagsPageObjects.fillTagDescription(tag_description)
+        TagsPageObjects.expandXCard()
+        TagsPageObjects.fillTitleXCard(title_x_card)
         TagsPageObjects.clickSaveTagButton()
         TagsPageObjects.clickTagsButton()
 
         //THEN
-        TagsPageObjects.tagsNameListed().contains(tag_name)
-        TagsPageObjects.tagsDescriptionInListedTags().contains(tag_description)
-        TagsPageObjects.tagsShowed().should('have.length', 1)
+        TagsPageObjects.tagsNameListed().contains(tag_name).click()
+        TagsPageObjects.expandXCard()
+        TagsPageObjects.xCardTitle().should('have.value', title_x_card)
     })
 
 })

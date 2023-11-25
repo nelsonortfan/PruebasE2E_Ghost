@@ -1,10 +1,10 @@
 const { FAKER_SEED } = require("../../support/utils");
-const { TagsPageObjects } = require("../../support/tags_page_objects");
+const { TagsPageObjects } = require("../../pageObjects/Tags");
 const {faker} = require("@faker-js/faker");
 
 faker.seed(FAKER_SEED);
 
-describe('F4.17 - Create a tag with an invalid tittle for facebook card', () => {
+describe('F4.25 - Create a tag with an invalid description for facebook card', () => {
     beforeEach(() => {
         //GIVEN
         cy.viewport(1000, 660);
@@ -12,22 +12,22 @@ describe('F4.17 - Create a tag with an invalid tittle for facebook card', () => 
         cy.resetDataForTest()
     })
 
-    it('should not create a tag with an invalid tittle for facebook card', () => {
+    it('should not create a tag with an invalid description for facebook card', () => {
         //WHEN
         const tag_name = faker.lorem.words(2);
         const tag_description = faker.lorem.words(5);
-        const title_facebook_card = faker.lorem.words(20);
+        const description_facebook_card = faker.lorem.words(20);
         TagsPageObjects.fillANewTagWithMandatoryFields(tag_name, tag_description)
         TagsPageObjects.expandFacebookCard()
-        TagsPageObjects.fillTitleFacebookCard(title_facebook_card)
+        TagsPageObjects.fillDescriptionFacebookCard(description_facebook_card)
         TagsPageObjects.clickSaveTagButton()
 
         //THEN
-        //ISSUE TO BE REPORTED: The tag is created with the invalid title for facebook card
+        //ISSUE TO BE REPORTED: The tag is created with the invalid description for facebook card
         TagsPageObjects.clickTagsButton()
         TagsPageObjects.tagsNameListed().contains(tag_name).click()
         TagsPageObjects.expandFacebookCard()
-        TagsPageObjects.facebookCardTitle().should('have.value', title_facebook_card)
+        TagsPageObjects.facebookCardDescription().should('have.value', description_facebook_card)
     })
 
 })
