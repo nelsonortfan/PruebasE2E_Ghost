@@ -1,8 +1,6 @@
-const { FAKER_SEED } = require("../../support/utils");
-const { TagsPageObjects } = require("../../pageObjects/Tags");
-const {faker} = require("@faker-js/faker");
+const {TagsPageObjects} = require("../../pageObjects/Tags");
 
-faker.seed(FAKER_SEED);
+let tags;
 
 describe('F4.5 - Create a valid description then should be showed', () => {
     beforeEach(() => {
@@ -10,23 +8,29 @@ describe('F4.5 - Create a valid description then should be showed', () => {
         cy.viewport(1000, 660);
         cy.login()
         cy.resetDataForTest()
+        cy.request('https://api.mockaroo.com/api/6f44e970?count=10&key=ff209cc0').then((response) => {
+            // Use the response body
+            tags = response.body;
+        })
     })
 
-    it('Should create a valid description then should be showed', () => {
-        //WHEN
-        const tag_name = faker.lorem.words(2);
-        const tag_description = faker.lorem.words(10)
-        TagsPageObjects.clickTagsButton()
-        TagsPageObjects.clickNewTagButton()
-        TagsPageObjects.fillTagName(tag_name)
-        TagsPageObjects.fillTagDescription(tag_description)
-        TagsPageObjects.clickSaveTagButton()
-        TagsPageObjects.clickTagsButton()
+    it(`Should create a valid description then should be showed`, () => {
+        let numberOfTags = 0;
+        tags.forEach(tag => {
+                //WHEN
+                TagsPageObjects.clickTagsButton()
+                TagsPageObjects.clickNewTagButton()
+                TagsPageObjects.fillTagName(tag.tag_title)
+                TagsPageObjects.fillTagDescription(tag.tag_description)
+                TagsPageObjects.clickSaveTagButton()
+                TagsPageObjects.clickTagsButton()
 
-        //THEN
-        TagsPageObjects.tagsNameListed().contains(tag_name)
-        TagsPageObjects.tagsDescriptionInListedTags().contains(tag_description)
-        TagsPageObjects.tagsShowed().should('have.length', 1)
-    })
+                numberOfTags++
 
+                //THEN
+                TagsPageObjects.tagsNameListed().contains(tag.tag_title)
+                TagsPageObjects.tagsDescriptionInListedTags().contains(tag.tag_description)
+                TagsPageObjects.tagsShowed().should('have.length', numberOfTags)
+            });
+        });
 })
