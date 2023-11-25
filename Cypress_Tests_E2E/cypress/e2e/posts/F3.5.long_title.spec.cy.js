@@ -9,7 +9,6 @@ describe("Test create a post with invalid title", () => {
     ghost.setupTest();
   });
 
-  // Cases for post creation
   const postCases = [
     {
       titleLength: 255,

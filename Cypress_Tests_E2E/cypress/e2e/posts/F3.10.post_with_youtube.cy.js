@@ -14,7 +14,6 @@ describe("Test create a post with a youtube link", () => {
     ghost.setupTest();
   });
 
-  // Cases for post creation
   const postCases = [
     { description: "Create a post with 1 video", post: postData[5] },
   ];

@@ -4,6 +4,7 @@ import {
   PostListObject,
   PostDetailObject,
   PostViewObject,
+  PostListDetailObject,
 } from "./Posts";
 
 import { TagCreatorObject } from "./Tags";
@@ -14,4 +15,5 @@ export {
   PostDetailObject,
   PostViewObject,
   TagCreatorObject,
+  PostListDetailObject,
 };

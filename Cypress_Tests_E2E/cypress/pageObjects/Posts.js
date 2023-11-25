@@ -218,6 +218,12 @@ class PostDetailObject extends PostEditOperations {
     this.contentField.clear();
     super.setContent(content);
   }
+
+  unpublish() {
+    cy.get('button[data-test-button="update-flow"]').click();
+    cy.get('button[data-test-button="revert-to-draft"]').click();
+    cy.wait(1000);
+  }
 }
 
 class PostViewObject {
@@ -229,4 +235,10 @@ class PostViewObject {
   }
 }
 
-export { PostCreatorObject, PostListObject, PostDetailObject, PostViewObject };
+export {
+  PostCreatorObject,
+  PostListObject,
+  PostDetailObject,
+  PostViewObject,
+  PostListDetailObject,
+};

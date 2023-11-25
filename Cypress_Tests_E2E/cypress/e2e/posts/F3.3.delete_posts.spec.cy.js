@@ -24,7 +24,6 @@ describe("Test delete a post", () => {
     });
   });
 
-  // Cases for post deletion
   const postCases = [
     { description: "Delete a post with random data", post: POSTS[0] },
   ];

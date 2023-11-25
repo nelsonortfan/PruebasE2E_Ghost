@@ -33,8 +33,6 @@ describe("Test create a pos with tags", () => {
     });
   });
 
-  // Cases for post creation
-
   postCases.forEach((postData) => {
     it(postData.description, () => {
       // When I create a post with given tags

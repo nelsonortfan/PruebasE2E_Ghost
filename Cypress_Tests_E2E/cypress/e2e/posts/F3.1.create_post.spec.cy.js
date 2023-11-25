@@ -14,7 +14,6 @@ describe("Test create a post", () => {
     ghost.setupTest();
   });
 
-  // Cases for post creation
   const postCases = [
     { description: "Create a published post", post: postData[0] },
     { description: "Create a draft post", post: postData[1] },

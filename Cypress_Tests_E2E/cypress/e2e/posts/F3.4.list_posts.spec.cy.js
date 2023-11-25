@@ -42,7 +42,6 @@ describe("Test post list", () => {
     });
   });
 
-  // Cases for post listing
   const postCases = [{ description: "List the posts expecting an order" }];
   postCases.forEach((postData) => {
     it(postData.description, () => {

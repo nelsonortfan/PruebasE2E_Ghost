@@ -13,7 +13,6 @@ describe("See featured post as user", () => {
     ghost.setupTest();
   });
 
-  // Cases for post creation
   const postCases = [{ description: "Check featured post", post: postData[2] }];
   postCases.forEach((postData) => {
     it(postData.description, () => {

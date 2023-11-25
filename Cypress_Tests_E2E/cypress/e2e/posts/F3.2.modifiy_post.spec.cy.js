@@ -27,7 +27,6 @@ describe("Edit the recently created post", () => {
     });
   });
 
-  // Cases for post edition
   const postCases = [
     { description: "Edit post with random data", post: generatePosts(1)[0] },
   ];
