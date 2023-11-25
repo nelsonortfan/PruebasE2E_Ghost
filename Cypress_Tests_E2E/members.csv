@@ -1,4 +1,0 @@
-id;email;name;note;subscribed_to_emails;complimentary_plan;stripe_customer_id;created_at;deleted_at;labels;tiers
-6524b55c5a8caf0c450164e5;prueba1@email.com;Nombre de prueba 1;;true;;;2023-10-10T02:22:20.000Z;;prueba;
-6525ed8916585504d4161743;prueba2@email.com;Nombre de prueba 2;;true;;;2023-10-11T00:34:17.000Z;;prueba;
-654ae3b33d1cbb05673f32d0;prueba3@email.com;Nombre de prueba 3;;true;;;2023-10-15T20:22:46.000Z;;prueba;
