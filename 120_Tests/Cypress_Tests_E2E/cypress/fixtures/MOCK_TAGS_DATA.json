@@ -1,0 +1,30 @@
+[
+  {
+    "title": "T",
+    "description": "Should create a tag with border value title of 1 letter character"
+  },
+  {
+    "title": "1",
+    "description": "Should create a tag with border value title of 1 numeric character"
+  },
+  {
+    "title": "ksyetwuorjlxayhfcqhwpqkppsnthrosxcioqcqndeanocyvvzwlpepoejjbjfmkfrggewgwfphlwvmmwychpuutbxsweghzmucfajrdanxyijnrhdyieblvwdsvyquhxepvvouqudgcddhryohmrisekmemjelrnjwhohiqlwpsoxwqxiwmyrcymtqyica",
+    "description": "Should create a tag with border value title of 191 characters only letters"
+  },
+  {
+    "title": "13098991320023618240802468560235876636694235790699899599814683745048660596217261895788658050329205422482966634325588737293551252710726458423560794076982549759030060874619808350416920412540495",
+    "description": "Should create a tag with border value title of 191 characters only numbers"
+  },
+  {
+    "title": "ek41114wrtbuyiidnf693v2qlyhggbhne6ohdriq08i496grp9l74686t8pavhsh6ler176yu5dx3gnppa2zmmqq42b2ioe3s2hf8l3wo8f4z1fzmk0ysmu6oiiuntavvopctz5cfkgdjaafmswa6l4xp2hjrwl2glkk2kqdawb9mbyiaekipe4o9nc5530",
+    "description": "Should create a tag with border value title of 191 characters with letters and numbers"
+  },
+  {
+    "title": "Valid Title",
+    "description": "Should create a tag with value title of 10 characters"
+  },
+  {
+    "title": "Valid @ title /n",
+    "description": "Should create a tag with value title of 19 characters with special characters"
+  }
+]

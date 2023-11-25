@@ -1,8 +1,6 @@
-const { faker } = require("@faker-js/faker");
-const { FAKER_SEED } = require("../../support/utils");
 const { TagsPageObjects } = require("../../pageObjects/Tags");
+import MOCK_TAGS_DATA from '../../fixtures/MOCK_TAGS_DATA.json'
 
-faker.seed(FAKER_SEED);
 
 describe('F4.1 - Create new tag with title', () => {
     beforeEach(() => {
@@ -12,18 +10,20 @@ describe('F4.1 - Create new tag with title', () => {
         cy.resetDataForTest()
     })
 
-    it('Should create tag and should be visible in tags list', () => {
 
-        //WHEN
-        const tag_name = faker.lorem.words(2);
-        TagsPageObjects.clickTagsButton()
-        TagsPageObjects.clickNewTagButton()
-        TagsPageObjects.fillTagName(tag_name)
-        TagsPageObjects.clickSaveTagButton()
-        TagsPageObjects.clickTagsButton()
+    MOCK_TAGS_DATA.forEach((tag) => {
+        it(`${tag.description}`, () => {
+            //WHEN
+            TagsPageObjects.clickTagsButton()
+            TagsPageObjects.clickNewTagButton()
+            TagsPageObjects.fillTagName(tag.title)
+            TagsPageObjects.clickSaveTagButton()
+            TagsPageObjects.clickTagsButton()
 
-        //THEN
-        TagsPageObjects.tagsShowed().should('have.length', 1)
-        TagsPageObjects.tagsNameListed().children().contains(tag_name)
+            //THEN
+            TagsPageObjects.tagsShowed().should('have.length', 1)
+            TagsPageObjects.tagsNameListed().children().should('contain', tag.title)
+        })
     })
+
 })
