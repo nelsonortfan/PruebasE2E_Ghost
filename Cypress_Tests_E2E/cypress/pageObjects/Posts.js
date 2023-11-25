@@ -38,13 +38,25 @@ class PostEditOperations {
     });
     toggleSettings();
   }
-  addImage(imagePath) {
+  clickCardMenu() {
     cy.get("span[data-lexical-text='true']").eq(0).click().type("{enter}");
     cy.get('button[aria-label="Add a card"]').click();
+  }
+  addImage(imagePath) {
+    this.clickCardMenu();
     cy.get('button[data-kg-card-menu-item="Image"]').click();
     cy.get('input[name="image-input"]').selectFile(imagePath, {
       force: true,
     });
+  }
+
+  addYoutubeVideo(videoUrl, verify = true) {
+    this.clickCardMenu();
+    cy.get('button[data-kg-card-menu-item="YouTube"]').click({ force: true });
+    cy.get('input[data-testid="embed-url"]').type(videoUrl + "{enter}");
+    if (verify) {
+      this.youtubeVideos;
+    }
   }
   get title() {
     return cy.get('textarea[placeholder="Post title"]');
@@ -58,6 +70,10 @@ class PostEditOperations {
   }
   get images() {
     return cy.get("img.mx-auto.block ");
+  }
+
+  get youtubeVideos() {
+    return cy.get('iframe[data-testid="embed-iframe"]');
   }
 }
 
@@ -73,7 +89,8 @@ class PostCreatorObject extends PostEditOperations {
       post.publish,
       post.feature,
       post.tags,
-      post.images
+      post.images,
+      post.youtubeVideos
     );
   }
 
@@ -83,7 +100,8 @@ class PostCreatorObject extends PostEditOperations {
     publish = true,
     feature = false,
     tags = [],
-    images = []
+    images = [],
+    youtubeVideos = []
   ) {
     this.opeNewPost();
     this.setTitle(title);
@@ -97,6 +115,11 @@ class PostCreatorObject extends PostEditOperations {
     if (images) {
       images.forEach((image) => {
         this.addImage(image);
+      });
+    }
+    if (youtubeVideos) {
+      youtubeVideos.forEach((video) => {
+        this.addYoutubeVideo(video);
       });
     }
     let postUrl = "";

@@ -53,7 +53,6 @@ describe("Test post list", () => {
         // And the posts should be in the expected order
         createdPosts.forEach((post, index) => {
           const postListDetail = currentPosts[index];
-          cy.log(post.title);
           postListDetail.title.should("contain", post.title);
           postListDetail.status.should(
             "contain",

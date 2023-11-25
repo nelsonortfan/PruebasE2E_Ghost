@@ -23,10 +23,17 @@
         "images":["cypress/fixtures/post_image.jpg"]
     },
     {
-        "title":"This a post with several image",
+        "title":"This a post with several images",
         "content":"This is a post with several description",
         "publish":true,
         "feature":false,
         "images":["cypress/fixtures/post_image.jpg","cypress/fixtures/post_image-2.jpg"]
+    },
+    {
+        "title":"This a post with youtube",
+        "content":"This is a post with youtube description",
+        "publish":true,
+        "feature":false,
+        "youtubeVideos":["https://www.youtube.com/watch?v=oVGycfDGWzU"]
     }
 ]
