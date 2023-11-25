@@ -1,56 +1,64 @@
-const { ScreenshotHelper } = require("../../support/utils");
-let createdPosts = [null, null];
-describe("Test edit a published post", () => {
+import {
+  GhostObject,
+  PostCreatorObject,
+  PostDetailObject,
+  PostListObject,
+} from "../../pageObjects";
+import { generatePosts } from "../../data/random";
+
+const POSTS = generatePosts(2);
+describe("Test delete a post", () => {
+  const ghost = new GhostObject();
+  const postCreator = new PostCreatorObject();
+  const postList = new PostListObject();
+  const currentPosts = [null, null];
+
   beforeEach(() => {
-    cy.viewport(1000, 660);
-    cy.login();
-    cy.resetDataForTest();
-    cy.createPost().then((postData) => {
-      createdPosts[1] = postData;
-    });
-    cy.createPost().then((postData) => {
-      createdPosts[0] = postData;
+    // Given I login and delete the existing data
+    ghost.setupTest();
+    // And I two posts
+    POSTS.forEach((post, index) => {
+      postCreator.createPostFromObject(post).then((post) => {
+        currentPosts[index] = post;
+      });
     });
   });
-  it("Delete a post.", () => {
-    cy.on("uncaught:exception", (err, runnable) => {
-      return false;
+
+  // Cases for post deletion
+  const postCases = [
+    { description: "Delete a post with random data", post: POSTS[0] },
+  ];
+  postCases.forEach((postData) => {
+    it(postData.description, () => {
+      cy.on("uncaught:exception", (err, runnable) => {
+        return false;
+      });
+
+      // When I open a created post
+      const post = currentPosts.find(
+        (post) => post.title === postData.post.title
+      );
+      const otherPost = currentPosts.find(
+        (post) => post.title !== postData.post.title
+      );
+      const postDetail = new PostDetailObject(post.id);
+
+      // And I delete the post
+      postDetail.delete();
+
+      postList.listPosts().then((currentPosts) => {
+        // Then there should be only one post
+        expect(currentPosts).to.have.length(1);
+        const postListDetail = currentPosts[0];
+        // And the post should not be in the list
+        postListDetail.title.should("not.contain", post.title);
+        // And the other post should not have been touched
+        postListDetail.title.should("contain", otherPost.title);
+        postList.postListElements.should("not.contain", post.title);
+        // And I should see a 404 on the deleted post page
+        postDetail.goToPost();
+        cy.get("body").should("contain.text", "Page not found");
+      });
     });
-    const screenshotTaker = new ScreenshotHelper("posts/F3.3");
-    cy.goToPage("posts");
-    screenshotTaker.screenshot("Listar posts.");
-    // Check that the post was created
-    cy.get(".gh-posts-list-item-group").should("have.length", 2);
-    // Delete the post
-    const toDelete = cy.get(".gh-posts-list-item-group").eq(0);
-    toDelete.click();
-    cy.wait(200);
-    screenshotTaker.screenshot("Abrir post.");
-    // Open the post settings
-    cy.get("button[title='Settings']").click();
-    cy.wait(200);
-    screenshotTaker.screenshot("Abrir ajustes.");
-    // Delete the post
-    cy.contains("Delete").scrollIntoView();
-    cy.wait(200);
-    screenshotTaker.screenshot("Abrir eliminar.");
-    cy.contains("Delete").click();
-    // Confirm deletion
-    cy.wait(200);
-    cy.get(".gh-btn-red").click();
-    screenshotTaker.screenshot("Confirmar eliminacion.");
-    cy.wait(200);
-    screenshotTaker.screenshot("Post eliminado.");
-    // Check that the post was deleted
-    cy.wait(200);
-    cy.goToPage("posts");
-    screenshotTaker.screenshot("Listar posts.");
-    cy.get(".gh-posts-list-item-group").should("have.length", 1);
-    cy.get(".gh-posts-list-item-group")
-      .eq(0)
-      .should("contain.text", createdPosts[1].title);
-    cy.visit(createdPosts[0].url, { failOnStatusCode: false });
-    cy.get("body").should("contain.text", "Page not found");
-    screenshotTaker.screenshot("Ver post eliminado.");
   });
 });

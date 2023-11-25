@@ -3,12 +3,19 @@
 const toggleSettings = () => {
   cy.get('button[title="Settings"]').click();
 };
-class PostCreatorObject {
+
+class PostEditOperations {
+  get titleField() {
+    return cy.get('textarea[placeholder="Post title"]');
+  }
+  get contentField() {
+    return cy.get(".koenig-lexical").eq(1);
+  }
   setTitle(title) {
-    cy.get('textarea[placeholder="Post title"]').type(title);
+    this.titleField.type(title);
   }
   setContent(content) {
-    cy.get(".koenig-lexical").eq(1).click().type(content);
+    this.contentField.click().type(content);
   }
   startPublishFlow() {
     cy.get('button[data-test-button="publish-flow"]').click();
@@ -39,7 +46,22 @@ class PostCreatorObject {
       force: true,
     });
   }
+  get title() {
+    return cy.get('textarea[placeholder="Post title"]');
+  }
+  get content() {
+    return cy.get(".koenig-lexical");
+  }
+  getTags() {
+    toggleSettings();
+    return cy.get("li.tag-token");
+  }
+  get images() {
+    return cy.get("img.mx-auto.block ");
+  }
+}
 
+class PostCreatorObject extends PostEditOperations {
   get continueButton() {
     return cy.get('button[data-test-button="continue"]');
   }
@@ -147,23 +169,31 @@ class PostListObject {
   }
 }
 
-class PostDetailObject {
+class PostDetailObject extends PostEditOperations {
   constructor(id) {
+    super();
     this.id = id;
-    cy.goToPage(`editor/post/${id}`);
+    this.goToPost();
   }
-  get title() {
-    return cy.get('textarea[placeholder="Post title"]');
+  goToPost() {
+    cy.goToPage(`editor/post/${this.id}`);
   }
-  get content() {
-    return cy.get(".koenig-lexical");
+  update() {
+    cy.get('button[data-test-button="publish-save"]').click();
   }
-  getTags() {
+  delete() {
     toggleSettings();
-    return cy.get("li.tag-token");
+    cy.contains("Delete").scrollIntoView();
+    cy.contains("Delete").click();
+    cy.get(".gh-btn-red").click();
   }
-  get images() {
-    return cy.get("img.mx-auto.block ");
+  setTitle(title) {
+    this.titleField.clear();
+    super.setTitle(title);
+  }
+  setContent(content) {
+    this.contentField.clear();
+    super.setContent(content);
   }
 }
 
