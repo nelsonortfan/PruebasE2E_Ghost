@@ -1,0 +1,32 @@
+[
+    {
+        "title":"This a hardcoded title",
+        "content":"This is a hardcoded description",
+        "publish":true
+    },
+    {
+        "title":"This a draft title",
+        "content":"This is a draft description",
+        "publish":false
+    },
+    {
+        "title":"This a featured post",
+        "content":"This is a featured description",
+        "publish":true,
+        "feature":true
+    },
+    {
+        "title":"This a post with an image",
+        "content":"This is a post with image description",
+        "publish":true,
+        "feature":false,
+        "images":["cypress/fixtures/post_image.jpg"]
+    },
+    {
+        "title":"This a post with several image",
+        "content":"This is a post with several description",
+        "publish":true,
+        "feature":false,
+        "images":["cypress/fixtures/post_image.jpg","cypress/fixtures/post_image-2.jpg"]
+    }
+]

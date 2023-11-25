@@ -82,39 +82,6 @@ Cypress.Commands.add("resetDataForTestOld", () => {
   cy.wait(500);
 });
 
-Cypress.Commands.add("createPost", (publish = true, screenshotTaker = null) => {
-  cy.goToPage("dashboard");
-  screenshotTaker && screenshotTaker.screenshot("Inicio agregar post");
-  const postName = faker.word.words({ min: 1, max: 5 });
-  const postContent = faker.lorem.paragraphs(3);
-  // Visit the Posts page
-  cy.get('a[title="New post"]').click();
-  screenshotTaker && screenshotTaker.screenshot("Agregar post");
-  // Fill the form
-  cy.get('textarea[placeholder="Post title"]').type(postName);
-  screenshotTaker && screenshotTaker.screenshot("Ingresar titulo");
-  cy.get(".koenig-lexical").eq(1).click().type(postContent);
-  screenshotTaker && screenshotTaker.screenshot("Ingresar contenido");
-  // Publish it
-  if (publish) {
-    cy.contains("Publish").click();
-    screenshotTaker && screenshotTaker.screenshot("Publicar post");
-    cy.contains("Continue, final review").click();
-    screenshotTaker && screenshotTaker.screenshot("Continuar");
-    cy.contains("right now").click();
-    screenshotTaker && screenshotTaker.screenshot("Publicar post ahora");
-  }
-  cy.url().then((url) => {
-    return cy.wrap({
-      url: url,
-      id: url.split("/").pop(),
-      title: postName,
-      content: postContent,
-      publish: publish,
-    });
-  });
-});
-
 Cypress.Commands.add(
   "createPostOld",
   (publish = true, screenshotTaker = null) => {
