@@ -131,7 +131,7 @@ class PostCreatorObject extends PostEditOperations {
 class PostListDetailObject {
   constructor($element) {
     // $element is the DOM element
-    this.$element = cy.get($element);
+    this.$element = $element;
   }
   get title() {
     return this.$element.get(".gh-content-entry-title");
@@ -155,8 +155,8 @@ class PostListObject {
     this.goToPosts();
     return this.postListElements.then(($posts) => {
       return cy.wrap(
-        [...$posts].map(($post) => {
-          return new PostListDetailObject($post);
+        [...$posts].map((post) => {
+          return new PostListDetailObject(cy.get(post));
         })
       );
     });

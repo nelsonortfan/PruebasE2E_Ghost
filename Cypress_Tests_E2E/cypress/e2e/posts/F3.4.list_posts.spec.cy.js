@@ -1,40 +1,66 @@
-const { ScreenshotHelper } = require("../../support/utils");
-const posts = [null, null, null, null];
+import {
+  GhostObject,
+  PostCreatorObject,
+  PostDetailObject,
+  PostListObject,
+} from "../../pageObjects";
+import { generatePosts } from "../../data/dynamic/posts";
 describe("Test post list", () => {
+  const ghost = new GhostObject();
+  const postCreator = new PostCreatorObject();
+  const postList = new PostListObject();
+  const createdPosts = [null, null, null, null];
+
   beforeEach(() => {
-    cy.viewport(1000, 660);
-    cy.login();
-    cy.resetDataForTest();
-    cy.createPost().then((postData) => {
-      posts[3] = postData;
-    });
-    cy.createPost().then((postData) => {
-      posts[2] = postData;
-    });
-    cy.createPost(false).then((postData) => {
-      posts[1] = postData;
-    });
-    cy.createPost(false).then((postData) => {
-      posts[0] = postData;
+    // Given I login and delete the existing data
+    ghost.setupTest();
+    generatePosts(4).then((posts) => {
+      // And I add a published post
+      postCreator
+        .createPostFromObject({ ...posts[0], publish: true })
+        .then((post) => {
+          createdPosts[3] = post;
+        });
+      // And I add a published post
+      postCreator
+        .createPostFromObject({ ...posts[1], publish: true })
+        .then((post) => {
+          createdPosts[2] = post;
+        });
+      // And I add a unpublished post
+      postCreator
+        .createPostFromObject({ ...posts[2], publish: false })
+        .then((post) => {
+          createdPosts[1] = post;
+        });
+      // And I add a unpublished post
+      postCreator
+        .createPostFromObject({ ...posts[3], publish: false })
+        .then((post) => {
+          createdPosts[0] = post;
+        });
     });
   });
 
-  it("Test post list", () => {
-    cy.goToPage("posts");
-    const screenshotTaker = new ScreenshotHelper("posts/F3.4");
-    screenshotTaker.screenshot("Listar posts");
-    // There should be 4 posts
-    cy.get(".gh-posts-list-item-group").should("have.length", 4);
-
-    // Check that the posts are in the correct order
-    posts.forEach((post, index) => {
-      const item = cy.get(".gh-posts-list-item-group").eq(index);
-      item.should("contain.text", post.title);
-      if (post.publish) {
-        item.should("contain.text", "Published");
-      } else {
-        item.should("contain.text", "Draft");
-      }
+  // Cases for post listing
+  const postCases = [{ description: "List the posts expecting an order" }];
+  postCases.forEach((postData) => {
+    it(postData.description, () => {
+      // When I list the created posts
+      postList.listPosts().then((currentPosts) => {
+        // Then there should be four posts
+        expect(currentPosts).to.have.length(4);
+        // And the posts should be in the expected order
+        createdPosts.forEach((post, index) => {
+          const postListDetail = currentPosts[index];
+          cy.log(post.title);
+          postListDetail.title.should("contain", post.title);
+          postListDetail.status.should(
+            "contain",
+            post.publish ? "Published" : "Draft"
+          );
+        });
+      });
     });
   });
 });

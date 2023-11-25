@@ -1,6 +1,6 @@
 // Use mockaroo to generate data for a post
 
-const URI = " https://api.mockaroo.com/api";
+const URI = "https://api.mockaroo.com/api";
 const resource = "e23537b0";
 // This should not be shared but oh well
 const key = "a8940860";
