@@ -1,5 +1,5 @@
 const { FAKER_SEED } = require("../../support/utils");
-const { TagsPageObjects } = require("../../support/tags_page_objects");
+const { TagsPageObjects } = require("../../pageObjects/Tags");
 const {faker} = require("@faker-js/faker");
 
 describe('F4.21 - Create a tag with a x card and an invalid image for this card', () => {

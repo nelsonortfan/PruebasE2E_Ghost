@@ -1,5 +1,5 @@
 const { FAKER_SEED } = require("../../support/utils");
-const { TagsPageObjects } = require("../../support/tags_page_objects");
+const { TagsPageObjects } = require("../../pageObjects/Tags");
 const {faker} = require("@faker-js/faker");
 
 faker.seed(FAKER_SEED);

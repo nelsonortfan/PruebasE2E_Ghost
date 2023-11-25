@@ -1,10 +1,8 @@
 const { FAKER_SEED } = require("../../support/utils");
-const { TagsPageObjects } = require("../../support/tags_page_objects");
+const { TagsPageObjects } = require("../../pageObjects/Tags");
 const {faker} = require("@faker-js/faker");
 
-faker.seed(FAKER_SEED);
-
-describe('F4.12 - Upload an invalid image and show error', () => {
+describe('F4.11 - Upload a valid image successfully', () => {
     beforeEach(() => {
         //GIVEN
         cy.viewport(1000, 660);
@@ -12,17 +10,19 @@ describe('F4.12 - Upload an invalid image and show error', () => {
         cy.resetDataForTest()
     })
 
-    it('Should upload an invalid image and show error', () => {
+    it('Upload a valid image successfully', () => {
         //WHEN
         const tag_name = faker.lorem.words(2);
         const tag_description = faker.lorem.words(10)
         const tag_image = faker.image.url()
         const tag_image_name = faker.lorem.words(2) + '.png'
         TagsPageObjects.fillANewTagWithMandatoryFields(tag_name, tag_description)
-        TagsPageObjects.uploadTagImage(tag_image, 'image/heic', tag_image_name)
+        TagsPageObjects.uploadTagImage(tag_image, 'image/png', tag_image_name)
 
         //THEN
-        TagsPageObjects.imageUploaded().should('not.exist');
-        TagsPageObjects.imageUploadError().contains('The image type you uploaded is not supported. Please use .GIF, .JPG, .JPEG, .PNG, .SVG, .SVGZ, .WEBP')
+        TagsPageObjects.imageUploaded().should('have.attr', 'src').and('include', tag_image_name.replace(' ', '-'));
+        TagsPageObjects.clickSaveTagButton()
+        TagsPageObjects.clickTagsButton()
+        TagsPageObjects.tagsNameListed().contains(tag_name)
     })
 })
