@@ -4,6 +4,19 @@ const toggleSettings = () => {
   cy.get('button[title="Settings"]').click();
 };
 
+class GoogleMetaDataObject {
+  constructor() {
+    cy.get('button[data-test-button="meta-data"]').click({ force: true });
+  }
+  get title() {
+    return cy.get("#meta-title");
+  }
+
+  get description() {
+    return cy.get("#meta-description");
+  }
+}
+
 class PostEditOperations {
   get titleField() {
     return cy.get('textarea[placeholder="Post title"]');
@@ -75,13 +88,46 @@ class PostEditOperations {
   get youtubeVideos() {
     return cy.get('iframe[data-testid="embed-iframe"]');
   }
-}
-
-class PostCreatorObject extends PostEditOperations {
   get continueButton() {
     return cy.get('button[data-test-button="continue"]');
   }
+  publishPost() {
+    this.startPublishFlow();
+    this.continueButton.click();
+    cy.get('button[data-test-button="confirm-publish"]').click();
+  }
 
+  fillGoogleMetadata(googleMetadata) {
+    toggleSettings();
+
+    const metaData = new GoogleMetaDataObject();
+    metaData.title.type(googleMetadata.title);
+    metaData.description.type(googleMetadata.description);
+    toggleSettings();
+  }
+
+  getGoogleMetaData() {
+    toggleSettings();
+    return new GoogleMetaDataObject();
+  }
+
+  getSelectedAccessLevel() {
+    return cy.get('select[data-test-select="post-visibility"]');
+  }
+
+  setAccessLevel(accessLevel) {
+    toggleSettings();
+    this.getSelectedAccessLevel().select(accessLevel);
+    toggleSettings();
+  }
+
+  getAccessLevel() {
+    toggleSettings();
+    return this.getSelectedAccessLevel();
+  }
+}
+
+class PostCreatorObject extends PostEditOperations {
   createPostFromObject(post) {
     return this.createPost(
       post.title,
@@ -90,7 +136,9 @@ class PostCreatorObject extends PostEditOperations {
       post.feature,
       post.tags,
       post.images,
-      post.youtubeVideos
+      post.youtubeVideos,
+      post.googleMetadata,
+      post.accessLevel
     );
   }
 
@@ -101,7 +149,9 @@ class PostCreatorObject extends PostEditOperations {
     feature = false,
     tags = [],
     images = [],
-    youtubeVideos = []
+    youtubeVideos = [],
+    googleMetadata = null,
+    accessLevel = null
   ) {
     this.opeNewPost();
     this.setTitle(title);
@@ -122,11 +172,15 @@ class PostCreatorObject extends PostEditOperations {
         this.addYoutubeVideo(video);
       });
     }
+    if (googleMetadata) {
+      this.fillGoogleMetadata(googleMetadata);
+    }
+    if (accessLevel) {
+      this.setAccessLevel(accessLevel);
+    }
     let postUrl = "";
     if (publish) {
-      this.startPublishFlow();
-      this.continueButton.click();
-      cy.get('button[data-test-button="confirm-publish"]').click();
+      this.publishPost();
       cy.get("a[data-test-complete-bookmark]")
         .should("have.attr", "href")
         .then((href) => {

@@ -13,3 +13,18 @@ export const generatePosts = (total) => {
   }
   return posts;
 };
+
+export const generatePost = () => generatePosts(1)[0];
+
+export const generateMetadatas = (total) => {
+  const metadata = [];
+  for (let i = 0; i < total; i++) {
+    metadata.push({
+      title: faker.string.alpha({ length: { min: 10, max: 60 } }),
+      description: faker.string.alpha({ length: { min: 10, max: 145 } }),
+    });
+  }
+  return metadata;
+};
+
+export const generateMetadata = () => generateMetadatas(1)[0];
