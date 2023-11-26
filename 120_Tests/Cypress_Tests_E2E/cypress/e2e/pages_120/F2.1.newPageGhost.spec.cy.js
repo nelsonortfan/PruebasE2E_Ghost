@@ -17,8 +17,8 @@ describe('Create a New Page', () => {
     it('Should create a new page', () => {	
 		
 				
-		title = faker.lorem.sentence({ min: 4, max:20})
-		description = faker.lorem.paragraph(6)
+		let title = faker.lorem.sentence({ min: 4, max:20})
+		let description = faker.lorem.paragraph(6)
 		
 		// When I create a New page with a title and a description
 		cy.wait(1000) 
