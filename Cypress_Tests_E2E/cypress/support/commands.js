@@ -172,7 +172,7 @@ Cypress.Commands.add("deleteAllPosts", () => {
 
 Cypress.Commands.add("deleteAllMembers", () => {
   cy.goToPage("members");
-  cy.wait(1000);
+  cy.wait(300);
   const memberSelector = ".gh-list-data";
   cy.get("body").then(($body) => {
     // synchronously query for element
@@ -181,7 +181,7 @@ Cypress.Commands.add("deleteAllMembers", () => {
       cy.get(".gh-members-list-name").then(($header) => {
         $header[0].click();
       });
-      cy.wait(1000);
+      cy.wait(300);
       cy.get('button[data-test-button="member-actions"]').click();
       cy.wait(300);
       cy.get('button[data-test-button="delete-member"]').click();
