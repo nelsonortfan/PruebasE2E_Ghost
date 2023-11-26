@@ -1,7 +1,6 @@
 import {
   GhostObject,
   PostCreatorObject,
-  PostDetailObject,
   PostListObject,
 } from "../../pageObjects";
 import { generatePosts } from "../../data/dynamic/posts";

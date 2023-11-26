@@ -33,3 +33,8 @@ export const generateXCard = () => ({
   title: faker.string.alpha({ length: { min: 10, max: 60 } }),
   description: faker.string.alpha({ length: { min: 10, max: 145 } }),
 });
+
+export const generateFacebookCard = () => ({
+  title: faker.string.alpha({ length: { min: 5, max: 60 } }),
+  description: faker.string.alpha({ length: { min: 5, max: 200 } }),
+});

@@ -1,8 +1,8 @@
 import { GhostObject, PostCreatorObject } from "../../pageObjects";
-import { generatePost, generateXCard } from "../../data/random";
+import { generatePost, generateFacebookCard } from "../../data/random";
 import { faker } from "@faker-js/faker";
 
-describe("Test create a post with an invalid invalid x card", () => {
+describe("Test create a post with an invalid facebook card", () => {
   const ghost = new GhostObject();
   const postCreator = new PostCreatorObject();
 
@@ -13,32 +13,36 @@ describe("Test create a post with an invalid invalid x card", () => {
 
   const postCases = [
     {
-      description: "Create post with x card title too long",
+      description: "Create post with facebook card title too long",
       post: {
         ...generatePost(),
-        xCard: {
-          ...generateXCard(),
+        facebookCard: {
+          ...generateFacebookCard(),
           title: faker.string.alpha(301),
         },
       },
       error:
-        "Validation failed: Twitter Title cannot be longer than 300 characters.",
+        "Validation error, cannot edit post. Validation failed for og_title.",
+      closePublish: true,
     },
     {
-      description: "Create post with x card description too long",
+      description: "Create post with facebook card description too long",
       post: {
         ...generatePost(),
-        xCard: {
-          ...generateXCard(),
+        facebookCard: {
+          ...generateFacebookCard(),
           description: faker.string.alpha(501),
         },
       },
       error:
-        "Validation failed: Twitter Description cannot be longer than 500 characters.",
+        "Validation failed: Facebook Description cannot be longer than 500 characters.",
     },
   ];
   postCases.forEach((postData) => {
     it(postData.description, () => {
+      cy.on("uncaught:exception", (err, runnable) => {
+        return false;
+      });
       const post = postData.post;
       // When I create a new post
       postCreator.opeNewPost();
@@ -46,13 +50,16 @@ describe("Test create a post with an invalid invalid x card", () => {
       postCreator.setTitle(post.title);
       // And I set valid content
       postCreator.setContent(post.content);
-      const xCard = postCreator.getXCard();
-      // And I set the x card title
-      xCard.setTitle(post.xCard.title);
-      // And I set the x card description
-      xCard.setDescription(post.xCard.description);
+      const facebookCard = postCreator.getFacebookCard();
+      // And I set the facebook card title
+      facebookCard.setTitle(post.facebookCard.title);
+      // And I set the facebook card description
+      facebookCard.setDescription(post.facebookCard.description);
       // And I click publish
       postCreator.startPublishFlow();
+      if (postData.closePublish) {
+        postCreator.closePublish();
+      }
       // Then I should see the expected error
       postCreator.validationError.should("contain", postData.error);
     });

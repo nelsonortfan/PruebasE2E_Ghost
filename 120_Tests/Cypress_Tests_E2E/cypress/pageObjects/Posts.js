@@ -44,6 +44,50 @@ class XCardObject {
   }
 }
 
+class FacebookCardObject {
+  constructor() {
+    cy.get('button[data-test-button="facebook-data"]').click({ force: true });
+  }
+  get title() {
+    return cy.get("#og-title");
+  }
+
+  get description() {
+    return cy.get("#og-description");
+  }
+
+  setTitle(title) {
+    this.title.clear().type(title);
+  }
+  setDescription(description) {
+    this.description.clear().type(description);
+  }
+}
+
+class CodeInjectionObject {
+  constructor() {
+    cy.get('button[data-test-button="codeinjection"]').click({ force: true });
+  }
+  get header() {
+    return cy.get("#post-setting-codeinjection-head");
+  }
+
+  get footer() {
+    return cy.get("#post-setting-codeinjection-foot");
+  }
+
+  setHeader(header) {
+    this.header.within(() => {
+      cy.get(".CodeMirror-line").type(header);
+    });
+  }
+  setFooter(footer) {
+    this.footer.within(() => {
+      cy.get(".CodeMirror-line").type(footer);
+    });
+  }
+}
+
 class PostEditOperations {
   get titleField() {
     return cy.get('textarea[placeholder="Post title"]');
@@ -181,6 +225,38 @@ class PostEditOperations {
     toggleSettings();
     return new XCardObject();
   }
+
+  setFacebookCard(facebookCardData) {
+    toggleSettings();
+    const facebookCard = new FacebookCardObject();
+    facebookCard.setTitle(facebookCardData.title);
+    facebookCard.setDescription(facebookCardData.description);
+    toggleSettings();
+  }
+  getFacebookCard() {
+    toggleSettings();
+    return new FacebookCardObject();
+  }
+
+  closePublish() {
+    cy.get('button[data-test-button="close-publish-flow"]').click();
+  }
+
+  setCodeInjection(codeInjectionData) {
+    toggleSettings();
+    const codeInjection = new CodeInjectionObject();
+    if (codeInjectionData.header) {
+      codeInjection.setHeader(codeInjectionData.header);
+    }
+    if (codeInjectionData.footer) {
+      codeInjection.setFooter(codeInjectionData.footer);
+    }
+    toggleSettings();
+  }
+  getCodeInjection() {
+    toggleSettings();
+    return new CodeInjectionObject();
+  }
 }
 
 class PostCreatorObject extends PostEditOperations {
@@ -196,7 +272,9 @@ class PostCreatorObject extends PostEditOperations {
       post.googleMetadata,
       post.accessLevel,
       post.excerpt,
-      post.xCard
+      post.xCard,
+      post.facebookCard,
+      post.codeInjection
     );
   }
 
@@ -211,7 +289,9 @@ class PostCreatorObject extends PostEditOperations {
     googleMetadata = null,
     accessLevel = null,
     excerpt = null,
-    xCard = null
+    xCard = null,
+    facebookCard = null,
+    codeInjection = null
   ) {
     this.opeNewPost();
     this.setTitle(title);
@@ -243,6 +323,12 @@ class PostCreatorObject extends PostEditOperations {
     }
     if (xCard) {
       this.setXCard(xCard);
+    }
+    if (facebookCard) {
+      this.setFacebookCard(facebookCard);
+    }
+    if (codeInjection) {
+      this.setCodeInjection(codeInjection);
     }
     let postUrl = "";
     if (publish) {
@@ -310,6 +396,17 @@ class PostListObject {
     this.postListElements.get(`a[href*="/editor/post/${id}"]`).should("exist");
     return new PostDetailObject(id);
   }
+
+  filterByAccess(accessLevel) {
+    cy.get(".gh-contentfilter-visibility").click();
+    cy.get(".ember-power-select-options").within(() => {
+      cy.contains(accessLevel).click();
+    });
+  }
+
+  get noPostsMessage() {
+    return cy.contains("No posts match the current filter");
+  }
 }
 
 class PostDetailObject extends PostEditOperations {
@@ -355,6 +452,9 @@ class PostViewObject {
   }
   get excerpt() {
     return cy.get("p.gh-article-excerpt");
+  }
+  get body() {
+    return cy.get("body");
   }
 }
 

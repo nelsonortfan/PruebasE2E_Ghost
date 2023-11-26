@@ -35,5 +35,30 @@
         "publish":true,
         "feature":false,
         "youtubeVideos":["https://www.youtube.com/watch?v=oVGycfDGWzU"]
+    },
+    {
+        "title":"This a post injection post",
+        "content":"This is a the description of the post injection description",
+        "publish":true,
+        "codeInjection": {
+            "header":"Injected header",
+            "footer":"Injected footer"
+        }
+    },
+    {
+        "title":"This post only has injected header",
+        "content":"This is a the description of the post injection header only",
+        "publish":true,
+        "codeInjection": {
+            "header":"Injected header"
+        }
+    },
+    {
+        "title":"This post only has injected footer",
+        "content":"This is a the description of the post injection footer only",
+        "publish":true,
+        "codeInjection": {
+            "footer":"Injected footer"
+        }
     }
 ]

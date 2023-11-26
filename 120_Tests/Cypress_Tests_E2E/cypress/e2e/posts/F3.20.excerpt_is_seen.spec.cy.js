@@ -6,7 +6,7 @@ import {
 import { generatePosts } from "../../data/dynamic/posts";
 import { faker } from "@faker-js/faker";
 
-describe("See featured post as user", () => {
+describe("See excerpt post as user", () => {
   const ghost = new GhostObject();
   const postCreator = new PostCreatorObject();
 

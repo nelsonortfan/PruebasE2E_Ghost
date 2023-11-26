@@ -3,6 +3,7 @@ import {
   generateMetadata,
   generatePost,
   generateXCard,
+  generateFacebookCard,
 } from "./posts.js";
 import { generateTags } from "./tags.js";
 export {
@@ -11,4 +12,5 @@ export {
   generateMetadata,
   generatePost,
   generateXCard,
+  generateFacebookCard,
 };
