@@ -4,7 +4,7 @@ var testData
 var validation
 const staffObj = new GhostStaff();	
 
-describe('Prueba de cambio passwords Staff', () => {
+describe('Prueba de actualizacion informacion Staff', () => {
 	
     beforeEach(() => {
 		// Given I login and delete the existing data and I connect to Mockaroo API for data random 
