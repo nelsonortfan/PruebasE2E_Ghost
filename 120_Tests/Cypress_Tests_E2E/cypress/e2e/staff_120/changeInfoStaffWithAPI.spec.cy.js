@@ -21,7 +21,7 @@ describe('Prueba de cambio passwords Staff', () => {
 			})		
     })
 
-/*
+
 
     it('Try to update the Bio successfully', () => {		
 		cy.wait(1000)
@@ -243,7 +243,7 @@ describe('Prueba de cambio passwords Staff', () => {
 		cy.wait(1000)						
     })
 	
-	*/
+	
 	
 	it('Update the Facebook url of the Staff successfully', () => {		
 		cy.wait(1000)
