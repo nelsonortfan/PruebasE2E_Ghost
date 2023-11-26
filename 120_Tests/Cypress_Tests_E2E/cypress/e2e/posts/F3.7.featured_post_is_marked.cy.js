@@ -19,7 +19,7 @@ describe("See featured post as user", () => {
       // When I create a featuted post
       const post = postData.post;
       postCreator.createPostFromObject(post).then((createdPost) => {
-        // Then I see the post as featured
+        // Then I see the post as featured on its detail
         const postView = new PostViewObject(createdPost.postUrl);
         postView.isFeatured.should("be.visible");
       });

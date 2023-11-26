@@ -1,8 +1,8 @@
 import { GhostObject, PostCreatorObject } from "../../pageObjects";
 import { generatePosts } from "../../data/random";
-import { fa, faker } from "@faker-js/faker";
+import { faker } from "@faker-js/faker";
 
-describe("Test create a post with a youtube link", () => {
+describe("Test create a post with an invalid youtube link", () => {
   const ghost = new GhostObject();
   const postCreator = new PostCreatorObject();
 

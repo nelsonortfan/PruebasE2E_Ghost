@@ -15,6 +15,33 @@ class GoogleMetaDataObject {
   get description() {
     return cy.get("#meta-description");
   }
+
+  setTitle(title) {
+    this.title.clear().type(title);
+  }
+  setDescription(description) {
+    this.description.clear().type(description);
+  }
+}
+
+class XCardObject {
+  constructor() {
+    cy.get('button[data-test-button="twitter-data"]').click({ force: true });
+  }
+  get title() {
+    return cy.get("#twitter-title");
+  }
+
+  get description() {
+    return cy.get("#twitter-description");
+  }
+
+  setTitle(title) {
+    this.title.clear().type(title);
+  }
+  setDescription(description) {
+    this.description.clear().type(description);
+  }
 }
 
 class PostEditOperations {
@@ -24,6 +51,7 @@ class PostEditOperations {
   get contentField() {
     return cy.get(".koenig-lexical").eq(1);
   }
+
   setTitle(title) {
     this.titleField.type(title);
   }
@@ -101,8 +129,8 @@ class PostEditOperations {
     toggleSettings();
 
     const metaData = new GoogleMetaDataObject();
-    metaData.title.type(googleMetadata.title);
-    metaData.description.type(googleMetadata.description);
+    metaData.setTitle(googleMetadata.title);
+    metaData.setDescription(googleMetadata.description);
     toggleSettings();
   }
 
@@ -125,6 +153,34 @@ class PostEditOperations {
     toggleSettings();
     return this.getSelectedAccessLevel();
   }
+
+  get excerptField() {
+    return cy.get("#custom-excerpt");
+  }
+
+  setExcerpt(excerpt) {
+    toggleSettings();
+    this.excerptField.type(excerpt);
+    toggleSettings();
+  }
+
+  getExcerpt() {
+    toggleSettings();
+    return this.excerptField;
+  }
+
+  setXCard(xCardData) {
+    toggleSettings();
+    const xCard = new XCardObject();
+    xCard.setTitle(xCardData.title);
+    xCard.setDescription(xCardData.description);
+    toggleSettings();
+  }
+
+  getXCard() {
+    toggleSettings();
+    return new XCardObject();
+  }
 }
 
 class PostCreatorObject extends PostEditOperations {
@@ -138,7 +194,9 @@ class PostCreatorObject extends PostEditOperations {
       post.images,
       post.youtubeVideos,
       post.googleMetadata,
-      post.accessLevel
+      post.accessLevel,
+      post.excerpt,
+      post.xCard
     );
   }
 
@@ -151,7 +209,9 @@ class PostCreatorObject extends PostEditOperations {
     images = [],
     youtubeVideos = [],
     googleMetadata = null,
-    accessLevel = null
+    accessLevel = null,
+    excerpt = null,
+    xCard = null
   ) {
     this.opeNewPost();
     this.setTitle(title);
@@ -177,6 +237,12 @@ class PostCreatorObject extends PostEditOperations {
     }
     if (accessLevel) {
       this.setAccessLevel(accessLevel);
+    }
+    if (excerpt) {
+      this.setExcerpt(excerpt);
+    }
+    if (xCard) {
+      this.setXCard(xCard);
     }
     let postUrl = "";
     if (publish) {
@@ -286,6 +352,9 @@ class PostViewObject {
   }
   get isFeatured() {
     return cy.get("article.featured");
+  }
+  get excerpt() {
+    return cy.get("p.gh-article-excerpt");
   }
 }
 

@@ -1,3 +1,14 @@
-import { generatePosts, generateMetadata, generatePost } from "./posts.js";
+import {
+  generatePosts,
+  generateMetadata,
+  generatePost,
+  generateXCard,
+} from "./posts.js";
 import { generateTags } from "./tags.js";
-export { generatePosts, generateTags, generateMetadata, generatePost };
+export {
+  generatePosts,
+  generateTags,
+  generateMetadata,
+  generatePost,
+  generateXCard,
+};

@@ -28,3 +28,8 @@ export const generateMetadatas = (total) => {
 };
 
 export const generateMetadata = () => generateMetadatas(1)[0];
+
+export const generateXCard = () => ({
+  title: faker.string.alpha({ length: { min: 10, max: 60 } }),
+  description: faker.string.alpha({ length: { min: 10, max: 145 } }),
+});

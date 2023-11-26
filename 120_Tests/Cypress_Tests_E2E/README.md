@@ -7,6 +7,8 @@ ghost_password: password for the ghost admin
 
 To run
 
+Is recommended to use a fresh install of ghost since other configrations may change what is shown affecting the existing tests.
+
 ```
 npm install
 cypress run
