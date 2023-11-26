@@ -9,15 +9,18 @@ describe('Crear un nuevo miembro', () => {
         cy.goToPage("members")
         cy.wait(500)
     })
-    it('Create a new member', ()=>{
-        // When - creo nombre y email con faker
+    it('Create member and delete it', () => {
+        // When - I create 2 new members
         const newMemberName = faker.person.fullName()
         const newEmail = faker.internet.email()
-        // And - yo creo un miembro con esos datos
+        const newMemberName2 = faker.person.fullName()
+        const newEmail2 = faker.internet.email()
         memberPage.createNewMember(newMemberName, newEmail);
+        memberPage.createNewMember(newMemberName2, newEmail2);
 
-        // Then - reviso que sí se haya creado el miembro
-        memberPage.assertMemberName(newMemberName, 0);
-        memberPage.assertMemberEmail(newEmail, 0);
+        // Then - I delete one of those new members
+        memberPage.deleteMember(newEmail);
+        // And - I check it was erased
+        memberPage.assertNotMemberEmail(newEmail);
     })
-  })
+})

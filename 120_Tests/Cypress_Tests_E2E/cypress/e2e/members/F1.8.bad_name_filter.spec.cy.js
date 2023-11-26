@@ -9,15 +9,17 @@ describe('Crear un nuevo miembro', () => {
         cy.goToPage("members")
         cy.wait(500)
     })
-    it('Create a new member', ()=>{
-        // When - creo nombre y email con faker
+    it('Filter a member with misspelled name', ()=>{
+        // When - creo 1 nombre y correo con Faker
         const newMemberName = faker.person.fullName()
+        const badMemberName = newMemberName + "blabla"
         const newEmail = faker.internet.email()
         // And - yo creo un miembro con esos datos
         memberPage.createNewMember(newMemberName, newEmail);
 
-        // Then - reviso que sí se haya creado el miembro
-        memberPage.assertMemberName(newMemberName, 0);
-        memberPage.assertMemberEmail(newEmail, 0);
+        // Then - filtro el miembro con un nombre mal escrito (otro nombre)
+        memberPage.filterMember(0, badMemberName, 'is');
+        // And - verifico miembro no se muestre
+        memberPage.elements.showAllMembersBtn().should('exist')
     })
   })
