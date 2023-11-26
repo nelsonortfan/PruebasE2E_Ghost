@@ -12,16 +12,8 @@ describe('Cambiar el titulo del sitio y verificar que se haya guardado bien', ()
         // When - I change the site name with a new name from Faker
         const newTitle = faker.internet.domainWord()
         settingsPage.changeTitle(newTitle);
-        // cy.get('button[data-test-toggle-pub-info=""]').click()
-        // cy.wait(300)
-        // screenshotTaker.screenshot("Expandir menú")
-        // cy.get('input[data-test-title-input=""]').clear()
-        // cy.get('input[data-test-title-input=""]').type(newTitle)
-        // screenshotTaker.screenshot("Ingresar nuevo título")
-        // cy.wait(100)
-        // cy.get('button[data-test-button="save"]').click()
-        // screenshotTaker.screenshot("Oprimo botón guardar y verifico que el título haya cambiado")
-        // cy.wait(500)
+
+        // Then - I check the title is changed
         settingsPage.elements.siteTitle().then(($header)=>{
             expect($header[0].innerText).to.equal(newTitle)
         })
