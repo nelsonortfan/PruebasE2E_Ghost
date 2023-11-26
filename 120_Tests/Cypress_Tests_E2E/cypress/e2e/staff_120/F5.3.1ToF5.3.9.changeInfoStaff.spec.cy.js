@@ -4,7 +4,7 @@ var testData
 var validation
 const staffObj = new GhostStaff();	
 
-describe('Prueba de cambio passwords Staff', () => {
+describe('Prueba de actualizacion informacion Staff', () => {
 	
     beforeEach(() => {
 		// Given I login and delete the existing data and I connect to Mockaroo API for data random 
@@ -130,13 +130,13 @@ describe('Prueba de cambio passwords Staff', () => {
 		// When I try to update the url of the X (Twitter) socia network of the Owner		
 		cy.wait(1000)
 		staffObj.selectOwnerStaff()
-		staffObj.updateTwitter(testData[0].web_site)
+		staffObj.updateTwitter(testData[0].slug)
 		staffObj.saveChanges()
 		staffObj.selectOwnerStaff()
 		// Then I can see it is updated
 		cy.get('input[id="user-twitter"]').should(($input) => {		
 		validation = $input.val()
-		expect(validation).contains(testData[0].web_site)	
+		expect(validation).contains(testData[0].slug)	
 		})
 		cy.wait(1000)						
     })
@@ -146,13 +146,13 @@ describe('Prueba de cambio passwords Staff', () => {
 		// When I try to update the url of the Facebook social network of the Owner		
 		cy.wait(1000)
 		staffObj.selectOwnerStaff()
-		staffObj.updateFacebook(testData[0].web_site)
+		staffObj.updateFacebook(testData[0].slug)
 		staffObj.saveChanges()
 		staffObj.selectOwnerStaff()
 		// Then I can see it is updated
 		cy.get('input[id="user-facebook"]').should(($input) => {		
 		validation = $input.val()
-		expect(validation).contains(testData[0].web_site)	
+		expect(validation).contains(testData[0].slug)	
 		})
 		cy.wait(1000)						
     })
