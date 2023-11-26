@@ -2,25 +2,28 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
   });
 
+
 import createGhostPage from '../../pageObjects/Pages'
 const { faker } = require("@faker-js/faker");
 
 var validation
+var xDescription
 
-describe('Update excerpt of a page', () => {
+describe('Update Facebook Description of a page', () => {
 	
     beforeEach(() => {
+		// Given I login and delete the existing data
 		cy.viewport(1000, 660);
         cy.login()
         cy.resetDataForTest()
     })
 
-    it('Should update excerpt', () => {	
+    it('Should update Facebook  Description of a page', () => {	
 	
-		
+		// When I create a new page and update the description of the facebook page asociated with it
+		let descriptionFacebook = faker.lorem.paragraph(6)
 		let title1 = faker.lorem.sentence({ min: 4, max:20})
 		let description = faker.lorem.paragraph(6)
-		let excerpt = faker.lorem.sentence({ min: 30, max:50})
 		
 		cy.wait(1000) 
         cy.goToPage("pages/");		
@@ -39,12 +42,20 @@ describe('Update excerpt of a page', () => {
 		cy.get('.feature-memberAttribution').get('div[role="menuitem"]').eq(0).click()
 		cy.wait(1000)
 		pageGhostObj.settings()		
-		pageGhostObj.asociateExcerpt(excerpt)
+		pageGhostObj.updateFacebookDescription(descriptionFacebook)
 		cy.wait(1000)
-		cy.contains('Update').click()
-		
-		cy.contains('Update failed: Excerpt cannot be longer than 300 characters')
-	
+		cy.goToPage("pages/");
+		cy.get('.feature-memberAttribution').get('div[role="menuitem"]').eq(0).click()
+		cy.wait(1000)
+		pageGhostObj.settings()	
+
+		// Then I see the description is updated for that page
+		validation = pageGhostObj.get_FacebookDescription()		
+		validation.should(($input) => {		
+		xDescription = $input.val()
+		expect(xDescription).contains(descriptionFacebook)
+		})	
+		cy.wait(1000)
 			
     })	
 	

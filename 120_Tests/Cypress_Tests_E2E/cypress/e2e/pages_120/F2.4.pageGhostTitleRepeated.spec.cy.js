@@ -7,6 +7,7 @@ var path = require('path');
 describe('Page wth title repeated', () => {
 	
     beforeEach(() => {
+		// Given I login and delete the existing data
 		cy.viewport(1000, 660);
         cy.login()
         cy.resetDataForTest()
@@ -14,7 +15,7 @@ describe('Page wth title repeated', () => {
 
     it('Should create two pages with title repeated', () => {	
 		
-	
+		// When Create a new page and after that I create a new one with the same title
 		
 		let title = faker.lorem.sentence({ min: 4, max:20})
 		let description1 = faker.lorem.paragraph(6)
@@ -45,6 +46,8 @@ describe('Page wth title repeated', () => {
         cy.goToPage("pages/");
 		cy.wait(1000)
 		cy.contains(title)		
+		
+		// Then I can see there are two pages with the same title repeated
 		const item1 = pageGhostObj.get_elementList(0)
 		item1.contains(title)
 		const item2 = pageGhostObj.get_elementList(1)

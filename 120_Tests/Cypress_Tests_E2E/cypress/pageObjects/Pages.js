@@ -90,6 +90,73 @@ class createGhostPage{
 	   cy.wait(1000);	
    }
    
+   updateXTitle(value){
+	   cy.get('button[data-test-button="twitter-data"]').click()
+	   cy.wait(500)
+	   cy.get('input[id="twitter-title"]').click()
+	   cy.get('input[id="twitter-title"]').clear({force: true})
+	   cy.get('input[id="twitter-title"]').type(value, {force: true})
+	   cy.wait(1000);
+	   cy.get('button[title="Settings"]').click()
+	   cy.wait(1000);	
+   }
+   
+   get_XTitle(){
+	   cy.get('button[data-test-button="twitter-data"]').click()
+	   cy.wait(500)
+	   return cy.get('input[id="twitter-title"]')	   
+   }
+   
+   updateFacebookTitle(value){
+	   cy.get('button[data-test-button="facebook-data"]').click()
+	   cy.wait(500)
+	   cy.get('input[id="og-title"]').click()
+	   cy.get('input[id="og-title"]').clear({force: true})
+	   cy.get('input[id="og-title"]').type(value, {force: true})
+	   cy.wait(1000);
+	   cy.get('button[title="Settings"]').click()
+	   cy.wait(1000);	
+   }
+   
+   get_FacebookTitle(){
+	   cy.get('button[data-test-button="facebook-data"]').click()
+	   cy.wait(500)
+	   return cy.get('input[id="og-title"]')	   
+   }
+   
+   updateXDescription(value){
+	   cy.get('button[data-test-button="twitter-data"]').click()
+	   cy.wait(500)
+	   cy.get('textarea[id="twitter-description"]').click()
+	   cy.get('textarea[id="twitter-description"]').clear({force: true})
+	   cy.get('textarea[id="twitter-description"]').type(value, {force: true})
+	   cy.wait(1000);
+	   cy.get('button[title="Settings"]').click()
+	   cy.wait(1000);	
+   }
+   
+   get_XDescription(){
+	   cy.get('button[data-test-button="twitter-data"]').click()
+	   cy.wait(500)
+	   return cy.get('textarea[id="twitter-description"]')	   
+   }
+   
+   updateFacebookDescription(value){
+	   cy.get('button[data-test-button="facebook-data"]').click()
+	   cy.wait(500)
+	   cy.get('textarea[id="og-description"]').click()
+	   cy.get('textarea[id="og-description"]').clear({force: true})
+	   cy.get('textarea[id="og-description"]').type(value, {force: true})
+	   cy.wait(1000);
+	   cy.get('button[title="Settings"]').click()
+	   cy.wait(1000);	
+   }
+   
+   get_FacebookDescription(){
+	   cy.get('button[data-test-button="facebook-data"]').click()
+	   cy.wait(500)
+	   return cy.get('textarea[id="og-description"]')	   
+   }
    
 }
 
