@@ -14,7 +14,7 @@ describe("Test create a post with multimedia", () => {
     ghost.setupTest();
   });
 
-=  const postCases = [
+  const postCases = [
     { description: "Create a post with 1 image", post: postData[3] },
     { description: "Create a post with 2 images", post: postData[4] },
   ];

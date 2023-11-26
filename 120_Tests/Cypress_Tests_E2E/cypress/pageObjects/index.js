@@ -5,9 +5,9 @@ import {
   PostDetailObject,
   PostViewObject,
   PostListDetailObject,
+  TagCreatorObject,
 } from "./Posts";
 
-import { TagCreatorObject } from "./Tags";
 export {
   GhostObject,
   PostCreatorObject,
