@@ -29,10 +29,6 @@ describe("Test delete a post", () => {
   ];
   postCases.forEach((postData) => {
     it(postData.description, () => {
-      cy.on("uncaught:exception", (err, runnable) => {
-        return false;
-      });
-
       // When I open a created post
       const post = currentPosts.find(
         (post) => post.title === postData.post.title

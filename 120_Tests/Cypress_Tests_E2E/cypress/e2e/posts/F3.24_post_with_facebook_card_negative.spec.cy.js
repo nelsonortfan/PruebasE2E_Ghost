@@ -40,9 +40,6 @@ describe("Test create a post with an invalid facebook card", () => {
   ];
   postCases.forEach((postData) => {
     it(postData.description, () => {
-      cy.on("uncaught:exception", (err, runnable) => {
-        return false;
-      });
       const post = postData.post;
       // When I create a new post
       postCreator.opeNewPost();
