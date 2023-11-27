@@ -13,8 +13,8 @@ describe('F4.27 - Create a tag with an invalid formar image for facebook card', 
 
     it('should create a tag with an invalid format image description for facebook card', () => {
         //WHEN
-        const tag_name = faker.lorem.words(2);
-        const tag_description = faker.lorem.words(5);
+        const tag_name = faker.string.alpha({ length: 10})
+        const tag_description = faker.string.alpha({ length: 20})
         const image_facebook_card = faker.image.url()
         const image_name = faker.lorem.words(2) + ".png"
         TagsPageObjects.fillANewTagWithMandatoryFields(tag_name, tag_description)

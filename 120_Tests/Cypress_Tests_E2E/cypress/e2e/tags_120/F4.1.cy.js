@@ -10,7 +10,6 @@ describe('F4.1 - Create new tag with title', () => {
         cy.resetDataForTest()
     })
 
-
     MOCK_TAGS_DATA.forEach((tag) => {
         it(`${tag.description}`, () => {
             //WHEN

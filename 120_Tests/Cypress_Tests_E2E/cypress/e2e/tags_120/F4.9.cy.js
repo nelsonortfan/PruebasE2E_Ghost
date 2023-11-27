@@ -14,7 +14,7 @@ describe('F4.9 - Create a tag and assign a different invalid color', () => {
 
     it('Should create a tag and assign a different invalid color', () => {
         //WHEN
-        const tag_name = faker.lorem.words(2);
+        const tag_name = faker.string.alpha({ length: 10})
         //invalid hex tag color
         const tag_color = faker.internet.color();
         TagsPageObjects.clickTagsButton()

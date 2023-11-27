@@ -14,9 +14,9 @@ describe('F4.19 - Create a tag with an invalid custom x card description', () =>
 
     it('should create a tag with an invalid x card description', () => {
         //WHEN
-        const tag_name = faker.lorem.words(2);
-        const tag_description = faker.lorem.words(10)
-        const description_x_card = faker.lorem.words(20);
+        const tag_name = faker.string.alpha({ length: 10})
+        const tag_description = faker.string.alpha({ length: 20})
+        const description_x_card = faker.string.alpha({ length: 200})
         TagsPageObjects.fillANewTagWithMandatoryFields(tag_name, tag_description)
         TagsPageObjects.expandXCard()
         TagsPageObjects.fillDescriptionXCard(description_x_card)

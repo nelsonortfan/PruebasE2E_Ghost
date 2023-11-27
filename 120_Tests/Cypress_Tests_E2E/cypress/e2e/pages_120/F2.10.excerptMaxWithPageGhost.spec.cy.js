@@ -21,7 +21,8 @@ describe('Update excerpt of a page with Maximum characters', () => {
 		// When I create a new page and I update the excerpt with more than 300 characters
 		let title1 = faker.lorem.sentence({ min: 4, max:20})
 		let description = faker.lorem.paragraph(6)
-		let excerpt = faker.lorem.sentence({ min: 30, max:50})
+		//let excerpt = faker.lorem.sentence({ min: 30, max:50})
+		let excerpt = faker.string.alpha({ length: 301})
 		
 		cy.wait(1000) 
         cy.goToPage("pages/");		

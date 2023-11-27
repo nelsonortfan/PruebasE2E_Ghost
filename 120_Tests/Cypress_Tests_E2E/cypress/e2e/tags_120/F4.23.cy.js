@@ -14,8 +14,9 @@ describe('F4.17 - Create a tag with a custom facebook card successfully', () => 
 
     it('should  Create a tag with a custom facebook card successfully', () => {
         //WHEN
-        const tag_name = faker.lorem.words(2);
-        const title_facebook_card = faker.lorem.words(2);
+        const tag_name = faker.string.alpha({ length: 10})
+        const tag_description = faker.string.alpha({ length: 20})
+        const title_facebook_card = faker.string.alpha({ length: 10})
         TagsPageObjects.clickTagsButton()
         TagsPageObjects.clickNewTagButton()
         TagsPageObjects.fillTagName(tag_name)

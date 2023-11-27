@@ -14,8 +14,8 @@ describe('F4.10 - Delete a Tag Successfully', () => {
 
     it('Should delete a Tag Successfully', () => {
         //WHEN
-        const tag_name = faker.lorem.words(2);
-        const tag_description = faker.lorem.words(10)
+        const tag_name = faker.string.alpha({ length: 10})
+        const tag_description = faker.string.alpha({ length: 20})
         TagsPageObjects.fillANewTagWithMandatoryFields(tag_name, tag_description)
         TagsPageObjects.clickSaveTagButton()
         TagsPageObjects.clickTagsButton()

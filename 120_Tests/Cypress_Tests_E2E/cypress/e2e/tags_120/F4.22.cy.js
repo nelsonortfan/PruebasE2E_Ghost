@@ -12,8 +12,8 @@ describe('F4.22 - Create a tag with a x card and an invalid format image for thi
 
     it('Create a tag with a x card and a invalid format image for this card', () => {
         //WHEN
-        const tag_name = faker.lorem.words(2);
-        const tag_description = faker.lorem.words(10)
+        const tag_name = faker.string.alpha({ length: 10})
+        const tag_description = faker.string.alpha({ length: 20})
         const title_x_card = faker.lorem.words(2);
         const image_url = faker.image.url()
         const image_name = faker.lorem.words(2) + '.jpeg';

@@ -14,7 +14,7 @@ describe('F4.8 - Create a tag and assign a different color', () => {
 
     it('Should create a tag and assign a different color', () => {
         //WHEN
-        const tag_name = faker.lorem.words(2);
+        const tag_name = faker.string.alpha({ length: 10})
         const tag_color = faker.internet.color().replace('#', '');
         TagsPageObjects.clickTagsButton()
         TagsPageObjects.clickNewTagButton()

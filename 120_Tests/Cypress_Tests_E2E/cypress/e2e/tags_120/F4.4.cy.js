@@ -14,8 +14,8 @@ describe('F4.4 - Create a description with more than 500 characters throws error
 
     it('Should create a description with more than 500 characters', () => {
         //WHEN
-        const tag_name = faker.lorem.words(2);
-        const tag_description = faker.lorem.words(100)
+        const tag_name = faker.string.alpha({ length: 10})
+        const tag_description = faker.string.alpha({ length: 501})
         TagsPageObjects.clickTagsButton()
         TagsPageObjects.clickNewTagButton()
         TagsPageObjects.fillTagName(tag_name)

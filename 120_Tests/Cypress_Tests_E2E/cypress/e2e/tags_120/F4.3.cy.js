@@ -12,9 +12,9 @@ describe('F4.3 - Create a title with more than 100 characters throws error ', ()
         cy.resetDataForTest()
     })
 
-    it('Should create a title with more than 100 characters', () => {
+    it('Should create a title with more than 191 characters', () => {
         //WHEN
-        const tag_name = faker.lorem.words(50);
+        const tag_name = faker.string.alpha({ length: 192})
         TagsPageObjects.clickTagsButton()
         TagsPageObjects.clickNewTagButton()
         TagsPageObjects.fillTagName(tag_name)
