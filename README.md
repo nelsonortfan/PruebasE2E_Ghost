@@ -1,5 +1,10 @@
 # PruebasE2E_Ghost
 
+### The 120 Test using Generated Data
+Go to the folder 120_Tests/Cypress_Tests_E2E and use the readme in order to execute the 120 tests using the different techniques of generating data:
+
+- [Cypress](./120_Tests/Cypress_Tests_E2E/README.md)
+
 ### The Readme.md of each tool is in the folder of each tool. Links:
 
 Since this produces a large amount of login events ensure ghost is setup to allow this.
