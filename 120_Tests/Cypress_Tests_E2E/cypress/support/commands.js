@@ -44,6 +44,13 @@ Cypress.Commands.add("login", () => {
     cy.wait(1000);
   });
 });
+Cypress.Commands.add("loginValues", (email, password) => {
+  cy.goToPage("signin");
+  cy.get('input[name="identification"]').clear().type(email);
+  cy.get('input[name="password"]').clear().type(password + '{enter}');
+  //cy.contains("Sign in").click();
+  cy.wait(1000);
+});
 Cypress.Commands.add("loginOld", () => {
   cy.session(Cypress.env("ghost_email") + "old", () => {
     cy.goToPageOld("signin");
