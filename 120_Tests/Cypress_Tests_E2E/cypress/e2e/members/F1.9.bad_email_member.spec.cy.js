@@ -1,5 +1,4 @@
 const { faker } = require("@faker-js/faker");
-import expect from "chai/lib/chai/interface/expect";
 import memberPage from "../../pages/memberPage";
 describe('Crear un nuevo miembro', () => {
     beforeEach(()=>{
