@@ -19,9 +19,6 @@ describe("Test create a post with a youtube link", () => {
   ];
   postCases.forEach((postData) => {
     it(postData.description, () => {
-      cy.on("uncaught:exception", (err, runnable) => {
-        return false;
-      });
       // When I create a post using a yotube video
       const post = postData.post;
       postCreator.createPostFromObject(post).then((createdPost) => {
