@@ -21,7 +21,8 @@ describe('Not update X Description of a page', () => {
     it('Should not update X Description of a page', () => {	
 	
 		// When I create a new page and update the field description of X with more than 500 characters
-		let descriptionX = faker.lorem.paragraph(20)
+		//let descriptionX = faker.lorem.paragraph(20)
+		let descriptionX = faker.string.alpha({ length: 501})
 		let title1 = faker.lorem.sentence({ min: 4, max:20})
 		let description = faker.lorem.paragraph(6)
 		

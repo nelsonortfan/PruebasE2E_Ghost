@@ -21,7 +21,8 @@ describe('Not Update Facebook Description of a page', () => {
     it('Should not update Facebook Description of a page', () => {	
 	
 		// When I create a new page and update the description of the facebook page with more than 500 characters
-		let descriptionFacebook = faker.lorem.paragraph(20)
+		//let descriptionFacebook = faker.lorem.paragraph(20)
+		let descriptionFacebook = faker.string.alpha({ length: 501}) 
 		let title1 = faker.lorem.sentence({ min: 4, max:20})
 		let description = faker.lorem.paragraph(6)
 		
