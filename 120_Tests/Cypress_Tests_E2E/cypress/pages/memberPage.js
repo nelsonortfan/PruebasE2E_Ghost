@@ -64,16 +64,6 @@ class memberPage{
             }
         })
     }
-    createNewMemberFail (name, email){
-        this.elements.newMemberBtn().click();
-        cy.wait(500);
-        this.elements.memberNameField().clear();
-        this.elements.memberNameField().type(name);
-        this.elements.memberEmailField().clear();
-        this.elements.memberEmailField().type(email);
-        this.elements.memberSaveBtn().click();
-        cy.wait(500)
-    }
     createNewMemberLabel (name, email, label){
         this.elements.newMemberBtn().click();
         cy.wait(500);
