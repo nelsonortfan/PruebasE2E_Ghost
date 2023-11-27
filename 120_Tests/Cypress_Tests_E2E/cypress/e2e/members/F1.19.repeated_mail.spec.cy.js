@@ -19,7 +19,7 @@ describe('Crear un nuevo miembro', () => {
             return false
           })
         memberPage.createNewMember(memberData[0].name, memberData[0].email);
-        memberPage.createNewMemberFail(memberData[1].name, memberData[0].email);
+        memberPage.createNewMember(memberData[1].name, memberData[0].email);
 
         // Then - reviso que no deje crear el segundo miembro
         memberPage.elements.pResponse().should('exist')
