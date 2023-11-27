@@ -1,28 +1,20 @@
 const { faker } = require("@faker-js/faker");
-const { ScreenshotHelper } = require("../../support/utils");
-var path = require('path');
+const settingsPage = require("../../pages/settingsPage");
 describe('Cambiar el titulo del sitio y verificar que se haya guardado bien', () => {
     beforeEach(()=>{
+        // Given - Un ambiente normal de trabajo en Ghost en settings/General
         cy.viewport(1000, 660);
         cy.login()
         cy.goToPage("settings/general")
         cy.wait(1000)
     })
     it('Change site title', ()=>{
-        const screenshotTaker = new ScreenshotHelper("settings/F5.4")
-        screenshotTaker.screenshot("Inicio test, página settings")
+        // When - I change the site name with a new name from Faker
         const newTitle = faker.internet.domainWord()
-        cy.get('button[data-test-toggle-pub-info=""]').click()
-        cy.wait(300)
-        screenshotTaker.screenshot("Expandir menú")
-        cy.get('input[data-test-title-input=""]').clear()
-        cy.get('input[data-test-title-input=""]').type(newTitle)
-        screenshotTaker.screenshot("Ingresar nuevo título")
-        cy.wait(100)
-        cy.get('button[data-test-button="save"]').click()
-        screenshotTaker.screenshot("Oprimo botón guardar y verifico que el título haya cambiado")
-        cy.wait(500)
-        cy.get('div.gh-nav-menu-details-sitetitle').then(($header)=>{
+        settingsPage.changeTitle(newTitle);
+
+        // Then - I check the title is changed
+        settingsPage.elements.siteTitle().then(($header)=>{
             expect($header[0].innerText).to.equal(newTitle)
         })
     })
