@@ -14,9 +14,9 @@ describe('F4.25 - Create a tag with an invalid description for facebook card', (
 
     it('should not create a tag with an invalid description for facebook card', () => {
         //WHEN
-        const tag_name = faker.lorem.words(2);
-        const tag_description = faker.lorem.words(5);
-        const description_facebook_card = faker.lorem.words(20);
+        const tag_name = faker.string.alpha({ length: 10})
+        const tag_description = faker.string.alpha({ length: 20})
+        const description_facebook_card = faker.string.alpha({ length: 200})
         TagsPageObjects.fillANewTagWithMandatoryFields(tag_name, tag_description)
         TagsPageObjects.expandFacebookCard()
         TagsPageObjects.fillDescriptionFacebookCard(description_facebook_card)

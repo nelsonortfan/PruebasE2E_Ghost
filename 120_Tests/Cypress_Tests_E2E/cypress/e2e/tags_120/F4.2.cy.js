@@ -15,7 +15,7 @@ describe('F4.2 - Create an internal tag and should be listed ', () => {
     it('Should create an internal tag and should be listed', () => {
 
         //WHEN
-        const tag_name = faker.lorem.words(2);
+        const tag_name = faker.string.alpha({ length: 10})
         const internalTag = "#" + tag_name;
         TagsPageObjects.clickTagsButton()
         TagsPageObjects.clickNewTagButton()

@@ -14,9 +14,9 @@ describe('F4.17 - Create a tag with an invalid tittle for facebook card', () => 
 
     it('should not create a tag with an invalid tittle for facebook card', () => {
         //WHEN
-        const tag_name = faker.lorem.words(2);
-        const tag_description = faker.lorem.words(5);
-        const title_facebook_card = faker.lorem.words(20);
+        const tag_name = faker.string.alpha({ length: 10})
+        const tag_description = faker.string.alpha({ length: 20})
+        const title_facebook_card = faker.string.alpha({ length: 100})
         TagsPageObjects.fillANewTagWithMandatoryFields(tag_name, tag_description)
         TagsPageObjects.expandFacebookCard()
         TagsPageObjects.fillTitleFacebookCard(title_facebook_card)

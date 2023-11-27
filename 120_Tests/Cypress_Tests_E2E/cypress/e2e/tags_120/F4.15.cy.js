@@ -4,7 +4,7 @@ const {faker} = require("@faker-js/faker");
 
 faker.seed(FAKER_SEED);
 
-describe('F4.14 - Create a tag with a invalid custom Meta Data title', () => {
+describe('F4.15 - Create a tag with a invalid custom Meta Data title', () => {
     beforeEach(() => {
         //GIVEN
         cy.viewport(1000, 660);
@@ -14,9 +14,9 @@ describe('F4.14 - Create a tag with a invalid custom Meta Data title', () => {
 
     it('should create a tag with a invalid custom Meta Data title', () => {
         //WHEN
-        const tag_name = faker.lorem.words(2);
-        const tag_description = faker.lorem.words(10)
-        const tag_meta_title = faker.lorem.words(40);
+        const tag_name = faker.string.alpha({ length: 10})
+        const tag_description = faker.string.alpha({ length: 20})
+        const tag_meta_title = faker.string.alpha({ length: 100})
         const tag_meta_description = faker.lorem.words(10)
 
         TagsPageObjects.fillANewTagWithMandatoryFields(tag_name, tag_description)

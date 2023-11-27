@@ -15,8 +15,8 @@ describe('F4.6 - Edit a slug with an invalid one and verify error', () => {
     it('Should edit a slug with an invalid one and verify error', () => {
 
         //WHEN
-        const tag_name = faker.lorem.words(2);
-        const tag_slug_invalid = faker.lorem.words(30);
+        const tag_name = faker.string.alpha({ length: 10})
+        const tag_slug_invalid = faker.string.alpha({ length: 195})
         TagsPageObjects.clickTagsButton()
         TagsPageObjects.clickNewTagButton()
         TagsPageObjects.fillTagName(tag_name)

@@ -14,8 +14,8 @@ describe('F4.7 - Edit a slug and proves that the tag have been saved', () => {
 
     it('Should edit a slug and proves that the tag have been saved', () => {
         //WHEN
-        const tag_name = faker.lorem.words(2);
-        const tag_slug = faker.lorem.words(2);
+        const tag_name = faker.string.alpha({ length: 10})
+        const tag_slug = faker.string.alpha({ length: 10})
         TagsPageObjects.clickTagsButton()
         TagsPageObjects.clickNewTagButton()
         TagsPageObjects.fillTagName(tag_name)

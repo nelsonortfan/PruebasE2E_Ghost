@@ -14,10 +14,10 @@ describe('F4.14 - Create a tag with a custom Meta Data', () => {
 
     it('should create a tag with a custom Meta Data', () => {
         //WHEN
-        const tag_name = faker.lorem.words(2);
-        const tag_description = faker.lorem.words(10)
-        const tag_meta_title = faker.lorem.words(2);
-        const tag_meta_description = faker.lorem.words(10)
+        const tag_name = faker.string.alpha({ length: 10})
+        const tag_description = faker.string.alpha({ length: 20})
+        const tag_meta_title = faker.string.alpha({ length: 10})
+        const tag_meta_description = faker.string.alpha({ length: 20})
         TagsPageObjects.fillANewTagWithMandatoryFields(tag_name, tag_description)
         TagsPageObjects.expandMetadata()
         TagsPageObjects.fillMetadataTitle(tag_meta_title)

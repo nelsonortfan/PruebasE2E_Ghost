@@ -13,9 +13,9 @@ describe('F4.28 - Create a tag with a valid format image but incorrect encoding 
 
     it('should create a tag with a valid format image but incorrect encoding for facebook card', () => {
         //WHEN
-        const tag_name = faker.lorem.words(2);
-        const tag_description = faker.lorem.words(5);
-        const image_facebook_card = faker.image.imageUrl()
+        const tag_name = faker.string.alpha({ length: 10})
+        const tag_description = faker.string.alpha({ length: 20})
+        const image_facebook_card = faker.image.url()
         const image_name = faker.lorem.words(2) + ".png"
         TagsPageObjects.fillANewTagWithMandatoryFields(tag_name, tag_description)
         TagsPageObjects.expandFacebookCard()

@@ -14,8 +14,8 @@ describe('F4.13 - Upload an invalid format image and show error', () => {
 
     it('Should upload an invalid format image and show error', () => {
         //WHEN
-        const tag_name = faker.lorem.words(2);
-        const tag_description = faker.lorem.words(10)
+        const tag_name = faker.string.alpha({ length: 10})
+        const tag_description = faker.string.alpha({ length: 20})
         const tag_image = faker.image.url()
         const tag_image_name = faker.lorem.words(2) + '.jpeg'
         TagsPageObjects.fillANewTagWithMandatoryFields(tag_name, tag_description)
