@@ -1,9 +1,54 @@
 # PruebasE2E_Ghost
 
 ### The 120 Test using Generated Data
+
 Go to the folder 120_Tests/Cypress_Tests_E2E and use the readme in order to execute the 120 tests using the different techniques of generating data:
 
 - [Cypress](./120_Tests/Cypress_Tests_E2E/README.md)
+  Since this produces a large amount of login events ensure ghost is setup to allow this.
+
+Example spam section of config.development.json for local ghost
+
+```
+"spam": {
+    "user_login": {
+        "minWait": 1,
+        "maxWait": 1,
+        "freeRetries": 5000000000,
+        "lifetime":1
+    },
+    "global_block": {
+      "minWait": 1,
+      "maxWait": 1,
+      "freeRetries": 5000000000,
+      "lifetime":1
+    },
+    "private_block":{
+      "minWait": 1,
+      "maxWait": 1,
+      "freeRetries": 5000000000,
+      "lifetime":1
+    },
+    "global_reset":{
+      "minWait": 1,
+      "maxWait": 1,
+      "freeRetries": 5000000000,
+      "lifetime":1
+    },
+    "user_reset":{
+      "minWait": 1,
+      "maxWait": 1,
+      "freeRetries": 5000000000,
+      "lifetime":1
+    },
+    "member_login":{
+      "minWait": 1,
+      "maxWait": 1,
+      "freeRetries": 5000000000,
+      "lifetime":1
+    }
+}
+```
 
 ### The Readme.md of each tool is in the folder of each tool. Links:
 
