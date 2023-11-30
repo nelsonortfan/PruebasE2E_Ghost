@@ -17,8 +17,13 @@ class settingsPage{
         pResponse : () => cy.get('p[class="response"]'),
         loginFailure : () => cy.get('span[data-test-task-button-state="failure"]'),
         NavegationLabelField : () => cy.get('input[data-test-input="label"]'),
+        navigationUrlField : () => cy.get('input[data-test-input="url"]'),
         navigationMainBlock : () => cy.get('div.gh-main-section-block'),
-        navigationAddBtn : () => cy.get('button.gh-blognav-add')
+        navigationMainContent : () => cy.get('div.gh-main-section-content'),
+        navigationAddBtn : () => cy.get('button.gh-blognav-add'),
+        navigationDelBtn : () => cy.get('button.gh-blognav-delete'),
+        navigationDelBtnClass : () => 'button.gh-blognav-delete',
+        articleTitle : () => cy.get('h1.gh-article-title')
     }
 
     changeTitle(title){
@@ -72,10 +77,27 @@ class settingsPage{
         })
         this.elements.navegationSave().click();
     }
-    newNavPrimField(label){
+    newNavPrimField(label, url){
         this.elements.navigationMainBlock().eq(0).within(() =>{
             this.elements.NavegationLabelField().eq(-1).clear().type(label);
+            this.elements.navigationUrlField().eq(-1).type(url);
             this.elements.navigationAddBtn().eq(-1).click();
+        })
+        this.elements.navegationSave().click();
+    }
+    deleteAllNavLabels(block){
+        this.newNavPrimField("Label", "ghost");
+        this.elements.navigationMainBlock().eq(block).within(() =>{
+            this.elements.navigationMainContent()
+            .find(this.elements.navigationDelBtnClass())
+            .then(($blk) =>{
+                cy.log($blk.length)
+                if($blk.length > 0){
+                    for(let i = 0; i < $blk.length; i++){
+                        this.elements.navigationDelBtn().eq(-1).click();
+                    }
+                }
+            })            
         })
         this.elements.navegationSave().click();
     }
