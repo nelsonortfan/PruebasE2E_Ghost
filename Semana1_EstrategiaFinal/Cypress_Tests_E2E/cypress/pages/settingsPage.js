@@ -23,7 +23,8 @@ class settingsPage{
         navigationAddBtn : () => cy.get('button.gh-blognav-add'),
         navigationDelBtn : () => cy.get('button.gh-blognav-delete'),
         navigationDelBtnClass : () => 'button.gh-blognav-delete',
-        articleTitle : () => cy.get('h1.gh-article-title')
+        articleTitle : () => cy.get('h1.gh-article-title'),
+        moreLabelToggle : () => cy.get('button.gh-more-toggle')
     }
 
     changeTitle(title){
@@ -86,18 +87,21 @@ class settingsPage{
         this.elements.navegationSave().click();
     }
     deleteAllNavLabels(block){
-        this.newNavPrimField("Label", "ghost");
         this.elements.navigationMainBlock().eq(block).within(() =>{
-            this.elements.navigationMainContent()
-            .find(this.elements.navigationDelBtnClass())
-            .then(($blk) =>{
-                cy.log($blk.length)
-                if($blk.length > 0){
-                    for(let i = 0; i < $blk.length; i++){
-                        this.elements.navigationDelBtn().eq(-1).click();
-                    }
+            this.elements.navigationMainContent().then(($content) =>{
+                if($content.find(this.elements.navigationDelBtnClass()).length){
+                    this.elements.navigationMainContent()
+                    .find(this.elements.navigationDelBtnClass())
+                    .then(($blk) =>{
+                        cy.log($blk.length)
+                        if($blk.length > 0){
+                            for(let i = 0; i < $blk.length; i++){
+                                this.elements.navigationDelBtn().eq(-1).click();
+                            }
+                        }
+                    })
                 }
-            })            
+            })                     
         })
         this.elements.navegationSave().click();
     }

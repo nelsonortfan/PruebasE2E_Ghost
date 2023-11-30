@@ -22,9 +22,7 @@ class createGhostPage{
    
    publishNewPage(){
 	   this.elements.publishButton().click();
-	   cy.wait(1000);
 	   this.elements.continueButton().click();
-	   cy.wait(1000);
 	   this.elements.finalPublishButton().click();	
    }
    
