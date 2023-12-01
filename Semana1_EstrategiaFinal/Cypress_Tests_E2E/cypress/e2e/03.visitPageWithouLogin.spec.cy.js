@@ -5,7 +5,14 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 import createGhostPage from "../pageObjects/Pages"
 const { ScreenshotHelper } = require("../support/utils");
 var path = require('path');
-const { faker } = require("@faker-js/faker");
+import MOCK_TAGS_DATA from '../fixtures/movie_schema.json'
+
+let regData
+
+let title1 = "default"
+let description
+let header
+let footer 
 
 describe('Asociate a header and a foot with a page', () => {
 
@@ -17,17 +24,17 @@ describe('Asociate a header and a foot with a page', () => {
         cy.resetDataForTest()
     })
 
-
+	MOCK_TAGS_DATA.forEach((page) => {
     it('Should asociate a header and a foot with a page', () => {	
 	
 		// When I create a  new page
 		
 		const screenshotTaker = new ScreenshotHelper("pages")	
 		
-		let title1 = faker.lorem.sentence({ min: 4, max:20})
-		let description = faker.lorem.paragraph(6)		
-		let header = faker.lorem.word(20)
-		let footer = faker.lorem.word(20)
+		let title1 = page.title
+		let description = page.description		
+		let header = page.header
+		let footer = page.footer
 				
 		cy.wait(1000) 
         cy.goToPage("pages/");	
@@ -65,5 +72,7 @@ describe('Asociate a header and a foot with a page', () => {
 		cy.contains(footer)		
 					
     })	
+	
+	})
 	
 })

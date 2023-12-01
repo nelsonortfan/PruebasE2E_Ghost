@@ -170,7 +170,7 @@ class createGhostPage{
    }
    
    visitPage(value){
-	  var pageUrl = Cypress.env("ghost_url").slice(0, -6) + "/" + value // .replaceAll(" ",'-')	  
+	  var pageUrl = Cypress.env("ghost_url").slice(0, -6) + "/" + value.replaceAll(" ",'-')	  
 	  pageUrl = pageUrl.replace(".",'/')
 	  cy.visit(pageUrl)
 	  cy.wait(1000)
