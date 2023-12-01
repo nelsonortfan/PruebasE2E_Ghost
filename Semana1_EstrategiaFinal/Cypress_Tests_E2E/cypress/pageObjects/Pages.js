@@ -156,6 +156,33 @@ class createGhostPage{
 	   return cy.get('textarea[id="og-description"]')	   
    }
    
+   updateHeaderAndFooterPage(value, value2){
+	   cy.get('button[data-test-button="codeinjection"]').click()
+	   cy.wait(500)
+	   cy.get('#post-setting-codeinjection-head > div:nth-child(2) > div:nth-child(1) > textarea:nth-child(1)').click({force: true})
+	   cy.get('#post-setting-codeinjection-head > div:nth-child(2) > div:nth-child(1) > textarea:nth-child(1)').clear({force: true})
+	   cy.get('#post-setting-codeinjection-head > div:nth-child(2) > div:nth-child(1) > textarea:nth-child(1)').type(value, {force: true})
+	   cy.wait(500)
+	   cy.get('#post-setting-codeinjection-foot > div:nth-child(2) > div:nth-child(1) > textarea:nth-child(1)').click({force: true})
+	   cy.get('#post-setting-codeinjection-foot > div:nth-child(2) > div:nth-child(1) > textarea:nth-child(1)').clear({force: true})
+	   cy.get('#post-setting-codeinjection-foot > div:nth-child(2) > div:nth-child(1) > textarea:nth-child(1)').type(value2, {force: true})
+	   cy.wait(1000);		  	
+   }
+   
+   visitPage(value){
+	  var pageUrl = Cypress.env("ghost_url").slice(0, -6) + "/" + value.replaceAll(" ",'-')	  
+	  pageUrl = pageUrl.replace(".",'/')
+	  cy.visit(pageUrl)
+	  cy.wait(1000)
+   }
+   
+   logout(){
+	   cy.get('.flex-auto').click()
+	   cy.get('a[href="#/signout/"]').click()
+	   cy.wait(2000)
+   }
+   
+   
 }
 
 export default createGhostPage;
