@@ -7,7 +7,7 @@ const { ScreenshotHelper } = require("../support/utils");
 var path = require('path');
 const { faker } = require("@faker-js/faker");
 
-describe('Asociate a Tag with a page', () => {
+describe('Asociate a header and a foot with a page', () => {
 
 
     beforeEach(() => {
@@ -18,15 +18,14 @@ describe('Asociate a Tag with a page', () => {
     })
 
 
-    it('Should asociate a Tag with a page', () => {	
+    it('Should asociate a header and a foot with a page', () => {	
 	
 		// When I create a  new page
 		
-		const screenshotTaker = new ScreenshotHelper("pages/F2.1")	
+		const screenshotTaker = new ScreenshotHelper("pages")	
 		
 		let title1 = faker.lorem.sentence({ min: 4, max:20})
-		let description = faker.lorem.paragraph(6)
-		let tag = faker.lorem.word(5)
+		let description = faker.lorem.paragraph(6)		
 		let header = faker.lorem.word(20)
 		let footer = faker.lorem.word(20)
 				
