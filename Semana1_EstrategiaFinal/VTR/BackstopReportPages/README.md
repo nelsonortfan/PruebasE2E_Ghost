@@ -17,4 +17,4 @@ Ejemplo.
 
 Lo anterior con el fin de poder analizar todas las diferencias en un solo reporte en vez de tener varios.
 
-Reporte ejemplo (tarada un poco en cargar) https://uniandes-my.sharepoint.com/personal/ji_bernal27_uniandes_edu_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fji%5Fbernal27%5Funiandes%5Fedu%5Fco%2FDocuments%2FBackstopJS%20Report%20%2811%5F19%5F2023%209%5F03%5F51%20PM%29%2Ehtml&parent=%2Fpersonal%2Fji%5Fbernal27%5Funiandes%5Fedu%5Fco%2FDocuments&ga=1
+Reporte ejemplo (tarda un poco en cargar) https://uniandes-my.sharepoint.com/personal/ji_bernal27_uniandes_edu_co/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fji%5Fbernal27%5Funiandes%5Fedu%5Fco%2FDocuments%2FBackstopJS%20Report%20%2811%5F19%5F2023%209%5F03%5F51%20PM%29%2Ehtml&parent=%2Fpersonal%2Fji%5Fbernal27%5Funiandes%5Fedu%5Fco%2FDocuments&ga=1
