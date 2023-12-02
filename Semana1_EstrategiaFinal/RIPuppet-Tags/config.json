@@ -1,0 +1,12 @@
+{
+    "url": "http://localhost:2368/ghost/#/tags", //YOUR GHOST URL + /ghost/#/tags, for example: http://localhost:2368/ghost/#/tags
+    "headless": true,
+    "depthLevels": 1,
+    "inputValues": false,
+    "values": {"userInput": "",
+        "passwordInput": "your_password", //YOUR GHOST PASSWORD
+        "passwordTwoInput": "123456",
+        "nameInput": "Mario",
+        "emailInput": "your_ghost_email"}, //YOUR GHOST EMAIL
+    "browsers": ["chromium"]
+}
