@@ -1,16 +1,20 @@
 const { faker } = require("@faker-js/faker");
+const { ScreenshotHelper } = require("../support/utils");
 
 class settingsPage{
     elements = {
         expandTitleBtn : () => cy.get('button[data-test-toggle-pub-info=""]'),
         exxpandTimezoneBtn : () => cy.get('button[data-test-toggle-timezone]'),
         expandLanguage : () => cy.get('button[data-test-toggle-lang]'),
+        expandLanguageOld : () => cy.get('.gh-setting-last > .gh-setting-action > .gh-btn'),
         titleInput : () => cy.get('input[data-test-title-input=""]'),
         descriptionInput : () => cy.get('input[data-test-description-input]'),
         timezoneSelector : () => cy.get('select[name="general[timezone]"]'),
         timezoneSpan : () => cy.get('span.gh-select'),
         languageInput : () => cy.get('input[data-test-input="locale"]'),
+        languageInputOld : () => cy.get('input[class="ember-text-field gh-input ember-view"]'),
         generalSave : () => cy.get('button[data-test-button="save"]'),
+        generalSaveOld : () => cy.get('button[class="gh-btn gh-btn-blue gh-btn-icon ember-view"]'),
         navegationSave : () => cy.get('button[data-test-save-button]'),
         siteTitle : () => cy.get('div.gh-nav-menu-details-sitetitle'),
         alertBanner : () => cy.get('div.gh-alert-content'),
@@ -59,12 +63,31 @@ class settingsPage{
         cy.wait(500);
     }
     changeLanguage(language){
+        const screenshotHelper= new ScreenshotHelper("changeLanguage");
+        screenshotHelper.screenshot("go to settings page");
         this.elements.expandLanguage().click();
+        screenshotHelper.screenshot("expand language");
         this.elements.languageInput().clear().type(language);
+        screenshotHelper.screenshot("change language");
         cy.wait(200);
         this.elements.generalSave().click();
+        screenshotHelper.screenshot("save language");
         cy.wait(500);
     }
+
+    changeLanguageOld(language){
+        const screenshotHelper= new ScreenshotHelper("changeLanguageOld");
+        screenshotHelper.screenshot("go to settings page");
+        this.elements.expandLanguageOld().eq(0).click();
+        screenshotHelper.screenshot("expand language");
+        this.elements.languageInputOld().clear().type(language, {force: true});
+        screenshotHelper.screenshot("change language");
+        cy.wait(200);
+        this.elements.generalSaveOld().click({force: true});
+        screenshotHelper.screenshot("save language");
+        cy.wait(500);
+    }
+
     emptyLanguage(){
         this.elements.expandLanguage().click();
         this.elements.languageInput().clear();
