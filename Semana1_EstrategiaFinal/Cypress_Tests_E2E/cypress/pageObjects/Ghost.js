@@ -17,9 +17,13 @@ class GhostObject {
     return cy.resetDataForTest();
   }
 
+  loginDefaultUser() {
+    this.login(Cypress.env("ghost_email"), Cypress.env("ghost_password"));
+  }
+
   setupTest() {
     // Ensure there is a session and all data is wiped out (minus members).
-    this.login(Cypress.env("ghost_email"), Cypress.env("ghost_password"));
+    this.loginDefaultUser();
     return this.resetDataForTest();
   }
 }

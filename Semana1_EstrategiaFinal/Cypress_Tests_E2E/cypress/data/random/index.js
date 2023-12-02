@@ -6,6 +6,12 @@ import {
   generateFacebookCard,
 } from "./posts.js";
 import { generateTags } from "./tags.js";
+import {
+  generateIntegration,
+  generateIntegrations,
+  generateWebhook,
+  generateWebhooks,
+} from "./integrations.js";
 export {
   generatePosts,
   generateTags,
@@ -13,4 +19,8 @@ export {
   generatePost,
   generateXCard,
   generateFacebookCard,
+  generateIntegration,
+  generateIntegrations,
+  generateWebhook,
+  generateWebhooks,
 };

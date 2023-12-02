@@ -8,6 +8,12 @@ import {
   TagCreatorObject,
 } from "./Posts";
 
+import {
+  ListIntegrationsObject,
+  CreateIntegrationObject,
+  CreateWebhookObject,
+  ListWebhookObject,
+} from "./Integrations";
 export {
   GhostObject,
   PostCreatorObject,
@@ -16,4 +22,8 @@ export {
   PostViewObject,
   TagCreatorObject,
   PostListDetailObject,
+  ListIntegrationsObject,
+  CreateIntegrationObject,
+  CreateWebhookObject,
+  ListWebhookObject,
 };
