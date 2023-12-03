@@ -2,6 +2,8 @@
 
 ## Semana 1
 
+Video: https://uniandes-my.sharepoint.com/:v:/g/personal/ji_bernal27_uniandes_edu_co/EdnP_88qsVVAveu0Ag_S4voBaByAcBq7ZejQzD1bpBH9MQ?e=AD5hR8&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D
+
 ### E2E with data valdiations tests
 
 - `Semana1_EstrategiaFinal/Cypress_Tests_E2E` 31 pruebas de integraciones , hisotrial , pages y settings.

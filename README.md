@@ -3,8 +3,7 @@
 ## Semana 1 enterga
 
 Go to folder Semana1_EstrategiaFinal
-
-### The 120 Test using Generated Data
+Video: https://uniandes-my.sharepoint.com/:v:/g/personal/ji_bernal27_uniandes_edu_co/EdnP_88qsVVAveu0Ag_S4voBaByAcBq7ZejQzD1bpBH9MQ?e=AD5hR8&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D
 
 Go to the folder 120_Tests/Cypress_Tests_E2E and use the readme in order to execute the 120 tests using the different techniques of generating data:
 
