@@ -1,12 +1,27 @@
 # PruebasE2E_Ghost
 
-### The 120 Test using Generated Data
+## Semana 1
 
-Go to the folder 120_Tests/Cypress_Tests_E2E and use the readme in order to execute the 120 tests using the different techniques of generating data:
+### E2E with data valdiations tests
 
-- [Cypress](./120_Tests/Cypress_Tests_E2E/README.md)
-  Since this produces a large amount of login events ensure ghost is setup to allow this.
+- `Semana1_EstrategiaFinal/Cypress_Tests_E2E` 31 pruebas de integraciones , hisotrial , pages y settings.
 
+### VTR tests
+
+- `Semana1_EstrategiaFinal/VRT/BackstopReportPages` -> Comparar 2 versiones de ghost para pages como visitante
+- `Semana1_EstrategiaFinal/VRT/postDetailRegression` -> Compaarar un post como visitante en diferentes navegadores y diferentes tamaños de pantalla
+
+### explorations tests
+
+- `Semana1_EstrategiaFinal/monkey-cypress` -> dashboard como administrdor
+- `Semana1_EstrategiaFinal/monkey-Pages` -> Ir al sitio como visitante
+- `Semana1_EstrategiaFinal/moneky-tags` -> Validación de tags como administrdor
+- `Semana1_EstrategiaFinal/Rippiet-Tags` -> Exploración de tags como administrdor
+- `Semana1_EstrategiaFinal/RippietPages`-> Ir al sitio como visitante
+
+## Remeneded ghost config
+
+Since this produces a large amount of login events ensure ghost is setup to allow this.
 Example spam section of config.development.json for local ghost
 
 ```

@@ -1,5 +1,9 @@
 # PruebasE2E_Ghost
 
+## Semana 1 enterga
+
+Go to folder Semana1_EstrategiaFinal
+
 ### The 120 Test using Generated Data
 
 Go to the folder 120_Tests/Cypress_Tests_E2E and use the readme in order to execute the 120 tests using the different techniques of generating data:
